@@ -58,7 +58,7 @@ By nature, I'm still a person figuring things out.
         </div>
 
         <div className="border-t border-border pt-8">
-          <p className="text-muted-foreground text-sm italic">Inspired by James Clear’s 1% rule, I’ve made small improvement a daily ritual.
+          <p className="text-muted-foreground text-sm italic">Inspired by James Clear’s 1% rule, I’ve made small improvement a daily ritual. 
 Are you building yours?
           </p>
         </div>
