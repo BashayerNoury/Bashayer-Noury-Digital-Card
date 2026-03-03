@@ -1,7 +1,7 @@
 import { Mail, Phone, Linkedin } from "lucide-react";
 import SmokeBackground from "@/components/SmokeBackground";
 
-const skills = ["Web Development", "Music Production", "VR", "Robotics", "AI"];
+const skills = ["Product Management", "Vibe Coding", "MVP", "MLP", "GTM"];
 
 const Index = () => {
   return (
@@ -13,20 +13,11 @@ const Index = () => {
         </p>
 
         <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
-          I'm <span className="text-primary">Cameron</span>
+          I'm <span className="text-primary">Bashayer</span>
         </h1>
 
         <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl">
-          I build websites and webapps, and love teaching others to do the same.
-          By day, I work at{" "}
-          <a href="#" className="text-foreground font-semibold underline underline-offset-4 hover:text-muted-foreground transition-colors">
-            Xano
-          </a>
-          . On the side, I'm building{" "}
-          <a href="#" className="text-foreground font-semibold underline underline-offset-4 hover:text-muted-foreground transition-colors">
-            ChatClipThat
-          </a>
-          , an AI-powered highlight generator for gamers.
+          By day, I am a super star Product Manager. By nature, I'm still a person figuring things out.
         </p>
 
         <div className="flex flex-wrap gap-3 mb-10">
@@ -42,21 +33,21 @@ const Index = () => {
 
         <div className="flex flex-wrap gap-3 mb-16">
           <a
-            href="mailto:cameron@example.com"
+            href="mailto:bashayernoury@gmail.com"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
           >
             <Mail size={18} />
             Email me
           </a>
           <a
-            href="tel:+1234567890"
+            href="tel:+96597304442"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors"
           >
             <Phone size={18} />
             Call me
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/bashayernoury/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors"
@@ -68,11 +59,7 @@ const Index = () => {
 
         <div className="border-t border-border pt-8">
           <p className="text-muted-foreground text-sm italic">
-            Thanks to my favorite clients at{" "}
-            <a href="#" className="underline underline-offset-4 hover:text-foreground transition-colors">
-              Yes Theory
-            </a>
-            , I've made it a tradition to seek and embrace discomfort! Have you?
+            Quiet builds. Loud outcomes.
           </p>
         </div>
       </div>
