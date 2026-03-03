@@ -1,11 +1,13 @@
 import { Mail, Phone, Linkedin } from "lucide-react";
+import SmokeBackground from "@/components/SmokeBackground";
 
 const skills = ["Web Development", "Music Production", "VR", "Robotics", "AI"];
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-6">
-      <div className="max-w-2xl w-full py-20">
+    <div className="min-h-screen bg-background flex items-center justify-center px-6 relative">
+      <SmokeBackground />
+      <div className="max-w-2xl w-full py-20 relative z-10">
         <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">
           Hey there
         </p>
