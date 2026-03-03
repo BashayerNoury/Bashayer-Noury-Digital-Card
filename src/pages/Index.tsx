@@ -13,7 +13,7 @@ const Index = () => {
         </p>
 
         <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
-          I'm <span className="text-primary">Bash</span>
+          I'm <span className="text-white">Bash</span>
         </h1>
 
         <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl">By day, I am a super star Product Manager. 
