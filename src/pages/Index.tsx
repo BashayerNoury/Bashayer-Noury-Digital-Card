@@ -10,18 +10,18 @@ const Index = () => {
           Hey there
         </p>
 
-        <h1 className="text-5xl sm:text-6xl font-bold mb-6">
+        <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
           I'm <span className="text-primary">Cameron</span>
         </h1>
 
         <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl">
           I build websites and webapps, and love teaching others to do the same.
           By day, I work at{" "}
-          <a href="#" className="text-foreground font-semibold underline underline-offset-4 hover:text-primary transition-colors">
+          <a href="#" className="text-foreground font-semibold underline underline-offset-4 hover:text-muted-foreground transition-colors">
             Xano
           </a>
           . On the side, I'm building{" "}
-          <a href="#" className="text-foreground font-semibold underline underline-offset-4 hover:text-primary transition-colors">
+          <a href="#" className="text-foreground font-semibold underline underline-offset-4 hover:text-muted-foreground transition-colors">
             ChatClipThat
           </a>
           , an AI-powered highlight generator for gamers.
@@ -67,7 +67,7 @@ const Index = () => {
         <div className="border-t border-border pt-8">
           <p className="text-muted-foreground text-sm italic">
             Thanks to my favorite clients at{" "}
-            <a href="#" className="underline underline-offset-4 hover:text-primary transition-colors">
+            <a href="#" className="underline underline-offset-4 hover:text-foreground transition-colors">
               Yes Theory
             </a>
             , I've made it a tradition to seek and embrace discomfort! Have you?
