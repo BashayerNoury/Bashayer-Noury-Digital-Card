@@ -13,7 +13,7 @@ const Index = () => {
         </p>
 
         <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
-          I'm <span className="text-white">Bash</span>
+          I'm <span className="text-muted-foreground">Bash</span>
         </h1>
 
         <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl">By day, I am a super star Product Manager. 
@@ -34,15 +34,15 @@ By nature, I'm still a person figuring things out.
         <div className="flex flex-wrap gap-3 mb-16">
           <a
             href="mailto:bashayernoury@gmail.com"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity">
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-primary-foreground font-medium hover:opacity-90 transition-opacity bg-primary">
             
             <Mail size={18} />
             Email me
           </a>
           <a
             href="tel:+96597304442"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors">
-            
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors">WhatsApp
+
             <Phone size={18} />
             Call me
           </a>
