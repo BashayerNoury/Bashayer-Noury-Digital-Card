@@ -13,36 +13,36 @@ const Index = () => {
         </p>
 
         <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
-          I'm <span className="text-primary">Bashayer</span>
+          I'm <span className="text-primary">Bash</span>
         </h1>
 
-        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl">
-          By day, I am a super star Product Manager. By nature, I'm still a person figuring things out.
+        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl">By day, I am a super star Product Manager. 
+By nature, I'm still a person figuring things out.
+
         </p>
 
         <div className="flex flex-wrap gap-3 mb-10">
-          {skills.map((skill) => (
-            <span
-              key={skill}
-              className="px-4 py-2 rounded-full border border-border text-sm text-muted-foreground"
-            >
+          {skills.map((skill) => <span
+            key={skill}
+            className="px-4 py-2 rounded-full border border-border text-sm text-muted-foreground">
+            
               {skill}
             </span>
-          ))}
+          )}
         </div>
 
         <div className="flex flex-wrap gap-3 mb-16">
           <a
             href="mailto:bashayernoury@gmail.com"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
-          >
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity">
+            
             <Mail size={18} />
             Email me
           </a>
           <a
             href="tel:+96597304442"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors"
-          >
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors">
+            
             <Phone size={18} />
             Call me
           </a>
@@ -50,8 +50,8 @@ const Index = () => {
             href="https://www.linkedin.com/in/bashayernoury/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors"
-          >
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors">
+            
             <Linkedin size={18} />
             LinkedIn
           </a>
@@ -63,8 +63,8 @@ const Index = () => {
           </p>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Index;
