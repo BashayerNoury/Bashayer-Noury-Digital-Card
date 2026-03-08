@@ -7,6 +7,7 @@ import profileImg from "@/assets/profile.jpeg";
 
 const Card = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
