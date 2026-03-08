@@ -1,15 +1,24 @@
+import { useState, useCallback } from "react";
 import { Mail, MessageCircle, Linkedin } from "lucide-react";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
+import SplashScreen from "@/components/SplashScreen";
 
 const skills = ["Product Management", "Vibe Coding", "MVP", "MLP", "GTM"];
 
 const Index = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-6 relative">
+      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
-      <div className="max-w-2xl w-full py-20 relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationFillMode: 'both' }}>
+      <div className="max-w-2xl w-full py-20 relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.5s' : '0s', animationFillMode: 'both' }}>
         <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">
           Hey there
         </p>
@@ -24,7 +33,6 @@ const Index = () => {
           {skills.map((skill) => <span
             key={skill}
             className="px-4 py-2 rounded-full border border-border text-sm text-muted-foreground">
-            
               {skill}
             </span>
           )}
@@ -34,7 +42,6 @@ const Index = () => {
           <a
             href="mailto:bashayernoury@gmail.com"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-primary-foreground font-medium hover:opacity-90 transition-opacity bg-primary">
-            
             <Mail size={18} />
             Email me
           </a>
@@ -51,7 +58,6 @@ const Index = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors">
-            
             <Linkedin size={18} />
             LinkedIn
           </a>
@@ -61,8 +67,8 @@ const Index = () => {
           <p className="text-muted-foreground text-sm italic whitespace-pre-line">{"Inspired by James Clear's 1% rule, I've made small improvement a daily ritual.\nAre you building yours?"}</p>
         </div>
       </div>
-    </div>);
-
+    </div>
+  );
 };
 
 export default Index;
