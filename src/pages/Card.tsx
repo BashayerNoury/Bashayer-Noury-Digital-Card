@@ -1,32 +1,9 @@
 import { useState, useCallback } from "react";
 import { QR } from "react-qr-rounded";
-import { Download, Copy, Check } from "lucide-react";
+import { Download, Share2 } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
-
-const CopyLinkBox = ({ url }: { url: string }) => {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-  return (
-    <div className="flex items-center gap-0 w-full max-w-xs rounded-xl border border-border bg-muted/40 overflow-hidden">
-      <span className="flex-1 px-4 py-3 text-sm font-mono text-foreground truncate select-all">
-        {url.replace(/^https?:\/\//, "")}
-      </span>
-      <button
-        onClick={handleCopy}
-        className="px-4 py-3 border-l border-border hover:bg-muted transition-colors"
-        aria-label="Copy link"
-      >
-        {copied ? <Check size={18} className="text-primary" /> : <Copy size={18} className="text-muted-foreground" />}
-      </button>
-    </div>
-  );
-};
 
 const Card = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -56,78 +33,78 @@ END:VCARD`;
     URL.revokeObjectURL(url);
   };
 
+  const handleShare = async () => {
+    if (navigator.share) {
+      await navigator.share({ title: "Bashayer Noury", url: siteUrl });
+    } else {
+      await navigator.clipboard.writeText(siteUrl);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
       <ThemeToggle />
       {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
 
       <div className="flex flex-col items-center gap-6 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
-        <div className="text-center space-y-1">
-          <h1 className="text-3xl font-bold text-foreground">Bashayer Noury</h1>
-          <p className="text-muted-foreground text-sm tracking-wide">Product Manager</p>
+
+        {/* Profile photo */}
+        <div className="relative -mb-2 z-10">
+          <img
+            src={profileImg}
+            alt="Bashayer Noury"
+            className="w-20 h-20 rounded-full object-cover border-4 border-background shadow-lg"
+          />
         </div>
 
+        {/* Dark card with QR */}
         <div className="relative animate-scale-in" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '1.8s' : '0.3s', animationFillMode: 'both' }}>
           <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-muted-foreground/30 via-foreground/20 to-muted-foreground/30 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
-          <div className="relative p-6 bg-white rounded-2xl shadow-lg transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+          <div className="relative bg-foreground rounded-2xl p-6 pt-10 flex flex-col items-center gap-4 shadow-xl">
             <QR
-              color="#000000"
-              backgroundColor="#ffffff"
+              color="#ffffff"
+              backgroundColor="transparent"
               rounding={100}
               errorCorrectionLevel="H"
-              style={{ width: 220, height: 220 }}
-              cutout
-              cutoutElement={
-                <img
-                  src={profileImg}
-                  alt="Bashayer Noury"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "50%",
-                    border: "3px solid white",
-                  }}
-                />
-              }
+              style={{ width: 200, height: 200 }}
             >
               {siteUrl}
             </QR>
+            <h1 className="text-lg font-bold text-background tracking-wide uppercase">
+              Bashayer Noury
+            </h1>
+            <p className="text-background/60 text-xs tracking-wider -mt-3">
+              Product Manager
+            </p>
           </div>
         </div>
 
-        <p className="text-muted-foreground text-sm">
-          Scan to visit my portfolio
-        </p>
-
-        {/* Divider */}
-        <div className="flex items-center gap-3 w-full max-w-xs">
-          <div className="flex-1 h-px bg-border" />
-          <span className="text-xs text-muted-foreground uppercase tracking-wider">or copy the link</span>
-          <div className="flex-1 h-px bg-border" />
-        </div>
-
-        {/* Copy link box */}
-        <CopyLinkBox url={siteUrl} />
-
-        <div className="flex flex-col gap-3 w-full max-w-xs">
+        {/* Buttons */}
+        <div className="flex flex-col gap-3 w-full max-w-xs mt-2">
+          <button
+            onClick={handleShare}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity uppercase tracking-wider text-sm"
+          >
+            Share Link
+            <Share2 size={16} />
+          </button>
           <button
             onClick={handleSaveContact}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/70 text-primary-foreground font-medium hover:opacity-90 transition-opacity bg-primary">
-            
-            <Download size={18} />
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm"
+          >
+            <Download size={16} />
             Save Contact
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm">← Go to Portfolio
-
-
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 text-muted-foreground text-sm hover:text-foreground transition-colors"
+          >
+            ← Go to Portfolio
           </a>
         </div>
       </div>
-    </div>);
-
+    </div>
+  );
 };
 
 export default Card;
