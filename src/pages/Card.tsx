@@ -86,6 +86,7 @@ END:VCARD`;
               color="hsl(var(--foreground))"
               bgColor="transparent"
               padding={0}
+              image={{ src: qrLogo, width: 50, height: 50, overlap: true }}
             />
           </div>
         </div>
