@@ -60,15 +60,15 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Welcome
+              Hi there {greeting.emoji}
             </motion.p>
             <motion.h1
-              className="text-6xl sm:text-8xl font-bold text-foreground"
+              className="text-5xl sm:text-7xl font-bold text-foreground"
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             >
-              Bash
+              {greeting.text}
             </motion.h1>
             <motion.div
               className="mt-6 h-px bg-gradient-to-r from-transparent via-muted-foreground/40 to-transparent"
