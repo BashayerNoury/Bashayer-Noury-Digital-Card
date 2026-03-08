@@ -52,6 +52,7 @@ END:VCARD`;
             level="H"
             bgColor="#ffffff"
             fgColor="#000000" />
+          </div>
         </div>
 
         <p className="text-muted-foreground text-sm">
