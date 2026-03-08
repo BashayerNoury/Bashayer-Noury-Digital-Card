@@ -29,7 +29,7 @@ const Index = () => {
             <img
               src={profileImg}
               alt="Bashayer Noury"
-              className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-foreground/20 shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
+              className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-4 border-background shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
             />
           </div>
           <div>
