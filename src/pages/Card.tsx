@@ -124,11 +124,11 @@ END:VCARD`;
 
         {/* Actions */}
         <div className="flex flex-col items-center gap-3 w-full max-w-sm mt-2">
-          <div className="flex items-center w-full rounded-full border border-foreground/20 bg-foreground/5 pl-1 transition-all duration-300">
-            <span className={`flex-1 pl-4 sm:pl-5 py-3 text-sm sm:text-base font-medium tracking-tight ${copied ? "text-primary" : "text-foreground"}`}>
+          <div className="flex items-center w-full rounded-full border border-foreground/20 bg-foreground/5 py-1.5 pl-5 pr-1.5 transition-all duration-300">
+            <span className={`flex-1 py-2 text-sm sm:text-base font-medium tracking-tight ${copied ? "text-primary" : "text-foreground"}`}>
               {copied ? "Copied!" : "bybash.lovable.app"}
             </span>
-            <div className="flex items-center gap-1.5 mr-1.5">
+            <div className="flex items-center gap-1.5">
               <button
                 onClick={handleCopy}
                 className={`flex items-center justify-center w-11 h-11 rounded-full transition-all ${
