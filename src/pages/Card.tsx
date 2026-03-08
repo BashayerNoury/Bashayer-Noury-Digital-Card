@@ -58,13 +58,16 @@ END:VCARD`;
   };
 
   const handleShare = async () => {
-    if (navigator.share) {
-      try {
+    try {
+      if (navigator.share) {
         await navigator.share({ title: "Bashayer Noury", url: siteUrl });
-      } catch {
-        // Share cancelled
+        return;
       }
+    } catch {
+      // Share cancelled or failed
     }
+    // Fallback: open mailto or copy
+    window.open(`https://wa.me/?text=${encodeURIComponent("Check out Bashayer Noury's portfolio: " + siteUrl)}`, "_blank");
   };
 
   return (
