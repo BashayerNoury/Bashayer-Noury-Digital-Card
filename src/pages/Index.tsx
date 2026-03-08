@@ -1,13 +1,26 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Mail, MessageCircle, Linkedin } from "lucide-react";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
+import signatureDark from "@/assets/signature-dark.png";
+import signatureLight from "@/assets/signature-light.png";
 
 const skills = ["Product Management", "Vibe Coding", "MVP", "MLP", "GTM"];
 
 const Index = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const [isDark, setIsDark] = useState(() =>
+    document.documentElement.classList.contains("dark")
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
@@ -63,8 +76,9 @@ const Index = () => {
           </a>
         </div>
 
-        <div className="border-t border-border pt-8">
+        <div className="border-t border-border pt-8 flex items-center justify-between">
           <p className="text-muted-foreground text-sm italic whitespace-pre-line">{"Inspired by James Clear's 1% rule, I've made small improvement a daily ritual.\nAre you building yours?"}</p>
+          <img src={isDark ? signatureLight : signatureDark} alt="BN Signature" className="h-16 w-auto opacity-60" />
         </div>
       </div>
     </div>
