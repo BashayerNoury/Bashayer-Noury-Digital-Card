@@ -6,6 +6,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 import signatureDark from "@/assets/signature-dark.png";
 import signatureLight from "@/assets/signature-light.png";
+import profileImg from "@/assets/profile.jpeg";
 
 const skills = ["Product Management", "AI", "MVP / MLP", "GTM"];
 

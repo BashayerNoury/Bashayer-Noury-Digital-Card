@@ -6,12 +6,8 @@ import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
 
 const Card = () => {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash] = useState(false);
   const [copied, setCopied] = useState(false);
-
-  const handleSplashComplete = useCallback(() => {
-    setShowSplash(false);
-  }, []);
 
   const siteUrl = "https://bybash.lovable.app";
 
