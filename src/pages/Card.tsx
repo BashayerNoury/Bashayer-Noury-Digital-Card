@@ -3,14 +3,11 @@ import { QrcodeSVG } from "react-qrcode-pretty";
 import { Download, Send, Check, Copy } from "lucide-react";
 import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
-import LanguageToggle from "@/components/LanguageToggle";
 import SmokeBackground from "@/components/SmokeBackground";
 import SplashScreen from "@/components/SplashScreen";
-import { useLanguage } from "@/i18n/LanguageContext";
 import profileImg from "@/assets/profile.jpeg";
 
 const Card = () => {
-  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [showSplash, setShowSplash] = useState(() => {
     if (sessionStorage.getItem("splashShown")) return false;
@@ -65,7 +62,7 @@ END:VCARD`;
   const handleShare = async () => {
     if (!navigator.share) return;
     try {
-      await navigator.share({ title: t.fullName, url: siteUrl });
+      await navigator.share({ title: "Bashayer Noury", url: siteUrl });
     } catch {
       // Share cancelled
     }
@@ -75,7 +72,6 @@ END:VCARD`;
     <div className="min-h-screen overflow-hidden bg-background flex flex-col items-center justify-center px-6 relative">
       {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
       <ThemeToggle />
-      <LanguageToggle />
       <SmokeBackground />
 
       <motion.div
@@ -89,16 +85,16 @@ END:VCARD`;
           <div className="w-24 h-24 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
           <img
             src={profileImg}
-            alt={t.fullName}
+            alt="Bashayer Noury"
             className="relative w-24 h-24 rounded-full object-cover ring-2 ring-foreground/10 shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
           />
         </div>
 
         {/* Name & title */}
         <div className="text-center -mt-2">
-          <h1 className="text-2xl font-bold text-foreground mb-1">{t.fullName}</h1>
+          <h1 className="text-2xl font-bold text-foreground mb-1">Bashayer Noury</h1>
           <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium tracking-wide">
-            {t.title}
+            Product Manager
           </span>
         </div>
 
@@ -117,22 +113,22 @@ END:VCARD`;
 
         {/* Actions */}
         <div className="flex flex-col items-center gap-3 w-full max-w-sm mt-2">
-          <div className="flex items-center w-full rounded-full border border-foreground/20 bg-foreground/5 py-1.5 ltr:pl-7 ltr:pr-2 rtl:pr-7 rtl:pl-2 transition-all duration-300">
-            <span className={`flex-1 py-2 ltr:pr-3 rtl:pl-3 text-sm sm:text-base font-medium tracking-tight ${copied ? "text-primary" : "text-foreground"}`}>
-              {copied ? t.copied : "bybash.lovable.app"}
+          <div className="flex items-center w-full rounded-full border border-foreground/20 bg-foreground/5 py-1.5 pl-7 pr-2 transition-all duration-300">
+            <span className={`flex-1 py-2 pr-3 text-sm sm:text-base font-medium tracking-tight ${copied ? "text-primary" : "text-foreground"}`}>
+              {copied ? "Copied!" : "bybash.lovable.app"}
             </span>
             <div className="flex items-center gap-1.5">
               <button
                 onClick={handleCopy}
                 className="flex items-center justify-center w-11 h-11 rounded-full transition-all bg-foreground/10 text-foreground hover:bg-foreground/15"
-                aria-label={t.copy}
+                aria-label="Copy"
               >
                 {copied ? <Check size={16} /> : <Copy size={16} />}
               </button>
               <button
                 onClick={handleShare}
                 className="flex items-center justify-center w-11 h-11 rounded-full transition-all bg-foreground text-background hover:opacity-90"
-                aria-label={t.share}
+                aria-label="Share"
               >
                 <Send size={16} />
               </button>
@@ -143,18 +139,18 @@ END:VCARD`;
             className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm"
           >
             <Download size={16} />
-            {t.saveContact}
+            Save Contact
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 text-muted-foreground text-sm hover:text-foreground transition-colors"
           >
-            {t.backToPortfolio}
+            ← Back to Portfolio
           </a>
         </div>
       </motion.div>
       <p className="absolute bottom-3 text-muted-foreground text-[10px] sm:text-xs">
-        {t.madeWith} <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="inline w-3.5 h-3.5 sm:w-4 sm:h-4 align-middle mx-0.5" /> {t.inText}{" "}
+        Made with 🤍 In{" "}
         <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
           Lovable
         </a>
