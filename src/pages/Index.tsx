@@ -30,7 +30,12 @@ const Index = () => {
       {showSplash && <SplashScreen variant="home" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
-      <div className="max-w-2xl w-full relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
+        <motion.div
+          className="max-w-2xl w-full relative z-10"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
+        >
         <div className="flex items-center gap-4 mb-2 sm:mb-4">
           <div className="relative flex-shrink-0">
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
