@@ -28,7 +28,12 @@ END:VCARD`;
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
       <ThemeToggle />
 
-      <div className="flex flex-col items-center gap-8 animate-fade-in">
+      <div className="flex flex-col items-center gap-6 animate-fade-in">
+        <div className="text-center space-y-1">
+          <h1 className="text-3xl font-bold text-foreground">Bashayer Noury</h1>
+          <p className="text-muted-foreground text-sm tracking-wide">Product Manager</p>
+        </div>
+
         <div className="p-6 bg-white rounded-2xl shadow-lg">
           <QRCodeSVG
             value={siteUrl}
@@ -39,12 +44,9 @@ END:VCARD`;
           />
         </div>
 
-        <div className="text-center space-y-2">
-          <h2 className="text-2xl font-bold text-foreground">Scan My Business Card</h2>
-          <p className="text-muted-foreground text-sm">
-            Point your camera at the QR code to visit my portfolio
-          </p>
-        </div>
+        <p className="text-muted-foreground text-sm">
+          Scan to visit my portfolio
+        </p>
 
         <div className="flex flex-col gap-3 w-full max-w-xs">
           <button
