@@ -3,7 +3,7 @@ import { translations, type Locale } from "./translations";
 
 type LanguageContextType = {
   locale: Locale;
-  t: typeof translations.en;
+  t: (typeof translations)[Locale];
   toggleLocale: () => void;
   isRTL: boolean;
 };
