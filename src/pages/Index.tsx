@@ -40,7 +40,7 @@ const Index = () => {
           )}
         </div>
 
-        <div className="flex flex-wrap gap-3 mb-16">
+        <div className="flex flex-wrap gap-3 mb-10">
           <a
             href="https://wa.me/96597304442"
             target="_blank"
