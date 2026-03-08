@@ -122,24 +122,26 @@ END:VCARD`;
             <span className={`flex-1 pl-5 py-3 text-sm font-medium ${copied ? "text-accent-foreground" : "text-foreground"}`}>
               {copied ? "Copied!" : "bybash.lovable.app"}
             </span>
-            <button
-              onClick={handleCopy}
-              className={`flex items-center justify-center w-10 h-10 rounded-full mr-1 transition-all ${
-                copied
-                  ? "bg-accent-foreground/20 text-accent-foreground"
-                  : "bg-foreground/20 text-foreground hover:opacity-90"
-              }`}
-              aria-label="Copy"
-            >
-              {copied ? <Check size={16} /> : <Copy size={16} />}
-            </button>
-            <button
-              onClick={handleShare}
-              className="flex items-center justify-center w-10 h-10 rounded-full mr-1 transition-all bg-foreground text-background hover:opacity-90"
-              aria-label="Share"
-            >
-              <Send size={16} />
-            </button>
+            <div className="flex items-center gap-0 mr-1">
+              <button
+                onClick={handleCopy}
+                className={`flex items-center justify-center w-10 h-10 rounded-full transition-all ${
+                  copied
+                    ? "bg-accent-foreground/20 text-accent-foreground"
+                    : "bg-foreground/20 text-foreground hover:opacity-90"
+                }`}
+                aria-label="Copy"
+              >
+                {copied ? <Check size={16} /> : <Copy size={16} />}
+              </button>
+              <button
+                onClick={handleShare}
+                className="flex items-center justify-center w-10 h-10 rounded-full transition-all bg-foreground text-background hover:opacity-90"
+                aria-label="Share"
+              >
+                <Send size={16} />
+              </button>
+            </div>
           </div>
           <button
             onClick={handleSaveContact}
