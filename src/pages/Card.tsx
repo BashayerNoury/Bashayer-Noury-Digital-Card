@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { Download } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
-import SplashScreen from "@/components/SplashScreen";
+import SignatureSplash from "@/components/SignatureSplash";
 
 const Card = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -35,9 +35,9 @@ END:VCARD`;
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
       <ThemeToggle />
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+      {showSplash && <SignatureSplash onComplete={handleSplashComplete} />}
 
-      <div className="flex flex-col items-center gap-6 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.5s' : '0s', animationFillMode: 'both' }}>
+      <div className="flex flex-col items-center gap-6 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '3.2s' : '0s', animationFillMode: 'both' }}>
         <div className="text-center space-y-1">
           <h1 className="text-3xl font-bold text-foreground">Bashayer Noury</h1>
           <p className="text-muted-foreground text-sm tracking-wide">Product Manager</p>
