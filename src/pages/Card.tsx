@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { QrcodeSVG } from "react-qrcode-pretty";
 import { Download, Send, Check } from "lucide-react";
+import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
@@ -68,7 +69,12 @@ END:VCARD`;
       {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
       <ThemeToggle />
 
-      <div className="flex flex-col items-center gap-8 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
+      <motion.div
+        className="flex flex-col items-center gap-8"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
+      >
         {/* Profile photo */}
         <div className="relative">
           <div className="w-24 h-24 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
@@ -138,7 +144,7 @@ END:VCARD`;
             ← Back to Portfolio
           </a>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
