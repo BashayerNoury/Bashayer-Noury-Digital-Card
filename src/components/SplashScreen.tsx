@@ -1,8 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return { text: "Good Morning", emoji: "☀️" };
+  if (hour >= 12 && hour < 17) return { text: "Good Afternoon", emoji: "🌤️" };
+  if (hour >= 17 && hour < 21) return { text: "Good Evening", emoji: "🌅" };
+  return { text: "Good Night", emoji: "🌙" };
+};
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState<"enter" | "exit">("enter");
+  const greeting = useMemo(() => getGreeting(), []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -51,15 +60,15 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Welcome
+              Hi there {greeting.emoji}
             </motion.p>
             <motion.h1
-              className="text-6xl sm:text-8xl font-bold text-foreground"
+              className="text-5xl sm:text-7xl font-bold text-foreground"
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             >
-              Bash
+              {greeting.text}
             </motion.h1>
             <motion.div
               className="mt-6 h-px bg-gradient-to-r from-transparent via-muted-foreground/40 to-transparent"
