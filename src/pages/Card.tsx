@@ -99,7 +99,7 @@ END:VCARD`;
             href="/"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 text-muted-foreground text-sm hover:text-foreground transition-colors"
           >
-            ← Go to Portfolio
+            ← Back to Portfolio
           </a>
         </div>
       </div>
