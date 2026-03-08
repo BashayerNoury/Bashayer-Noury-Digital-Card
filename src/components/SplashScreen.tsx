@@ -1,23 +1,15 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const getGreeting = () => {
-  const hour = new Date().getHours();
-  if (hour >= 5 && hour < 12) return { text: "Good Morning", emoji: "☀️" };
-  if (hour >= 12 && hour < 17) return { text: "Good Afternoon", emoji: "🌤️" };
-  if (hour >= 17 && hour < 21) return { text: "Good Evening", emoji: "🌅" };
-  return { text: "Good Night", emoji: "🌙" };
-};
+import "@fontsource/dancing-script/700.css";
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState<"enter" | "exit">("enter");
-  const greeting = useMemo(() => getGreeting(), []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setPhase("exit");
       setTimeout(onComplete, 800);
-    }, 2000);
+    }, 2400);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -30,54 +22,47 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
-          {/* Animated smoke burst */}
+          {/* Smoke burst */}
           <motion.div
-            className="absolute w-[600px] h-[600px] rounded-full"
+            className="absolute w-[500px] h-[500px] rounded-full"
             style={{
-              background: "radial-gradient(circle, hsl(0 0% 60% / 0.3) 0%, transparent 70%)",
-              filter: "blur(80px)",
+              background: "radial-gradient(circle, hsl(0 0% 60% / 0.25) 0%, transparent 70%)",
+              filter: "blur(70px)",
             }}
             initial={{ scale: 0.3, opacity: 0 }}
-            animate={{ scale: 1.5, opacity: 0.6 }}
+            animate={{ scale: 1.4, opacity: 0.5 }}
             transition={{ duration: 1.8, ease: "easeOut" }}
           />
-          <motion.div
-            className="absolute w-[400px] h-[200px] rounded-full"
-            style={{
-              background: "linear-gradient(90deg, transparent, hsl(0 0% 80% / 0.25), transparent)",
-              filter: "blur(50px)",
-            }}
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1.8, opacity: 0.8 }}
-            transition={{ duration: 1.4, ease: "easeOut", delay: 0.3 }}
-          />
 
-          {/* Name text */}
-          <motion.div className="relative z-10 text-center">
-            <motion.p
-              className="text-base sm:text-lg tracking-[0.4em] uppercase text-muted-foreground mb-3"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              Hey there! {greeting.emoji}
-            </motion.p>
-            <motion.h1
-              className="text-5xl sm:text-7xl font-bold text-foreground"
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            >
-              {greeting.text}
-            </motion.h1>
+          <div className="relative z-10 flex flex-col items-center">
+            {/* Signature text with SVG path reveal */}
+            <div className="relative">
+              <motion.h1
+                className="text-5xl sm:text-7xl text-foreground"
+                style={{ fontFamily: "'Dancing Script', cursive" }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              >
+                <motion.span
+                  className="inline-block"
+                  initial={{ clipPath: "inset(0 100% 0 0)" }}
+                  animate={{ clipPath: "inset(0 0% 0 0)" }}
+                  transition={{ duration: 1.4, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  Bash ECard
+                </motion.span>
+              </motion.h1>
+            </div>
+
+            {/* Underline stroke */}
             <motion.div
-              className="mt-6 h-px bg-gradient-to-r from-transparent via-muted-foreground/40 to-transparent"
-              initial={{ scaleX: 0 }}
+              className="mt-3 h-[1.5px] bg-gradient-to-r from-transparent via-foreground/50 to-transparent"
+              initial={{ scaleX: 0, width: "180px" }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: 1, delay: 0.9 }}
-              style={{ width: "200px", margin: "0 auto" }}
+              transition={{ duration: 0.6, delay: 1.6, ease: "easeOut" }}
             />
-          </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
