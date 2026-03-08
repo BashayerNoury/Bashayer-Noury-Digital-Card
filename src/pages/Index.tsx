@@ -26,7 +26,7 @@ const Index = () => {
         </p>
 
         <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
-          I'm <span className="text-muted-foreground/80">Bash</span>
+          I'm <span className="text-muted-foreground/80">Bashayer Noury</span>
         </h1>
 
         <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl whitespace-pre-line">{"By day, I am a super star Product Manager.\nBy nature, I'm still a person figuring things out."}</p>
