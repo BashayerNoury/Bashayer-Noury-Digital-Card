@@ -122,7 +122,7 @@ const SplashScreen = ({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
         >
-          {variant === "card" ? <CardSkeleton /> : <HomeSkeleton />}
+          {variant === "card" ? <CardSkeleton /> : variant === "notfound" ? <NotFoundSkeleton /> : <HomeSkeleton />}
         </motion.div>
       )}
     </AnimatePresence>
