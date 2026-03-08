@@ -45,7 +45,7 @@ const Index = () => {
             href="https://wa.me/96597304442"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors">
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/70 text-primary-foreground font-medium hover:opacity-90 hover:border-primary transition-opacity bg-primary">
             <MessageCircle size={18} />
             WhatsApp
           </a>
@@ -59,7 +59,7 @@ const Index = () => {
           </a>
           <a
             href="mailto:bashayernoury@gmail.com"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/70 text-primary-foreground font-medium hover:opacity-90 hover:border-primary transition-opacity bg-primary">
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors">
             <Mail size={18} />
             Email me
           </a>
