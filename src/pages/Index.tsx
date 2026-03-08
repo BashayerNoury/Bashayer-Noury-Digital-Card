@@ -125,6 +125,7 @@ const Index = () => {
           <img src={signatureLight} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 hidden dark:block flex-shrink-0" />
         </motion.div>
         </motion.div>
+      <Footer />
     </div>
   );
 };
