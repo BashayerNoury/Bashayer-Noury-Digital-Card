@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { Download } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
-import SplashScreen from "@/components/SplashScreen";
+import SignatureSplash from "@/components/SignatureSplash";
 
 const Card = () => {
   const [showSplash, setShowSplash] = useState(true);
