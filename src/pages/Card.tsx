@@ -1,10 +1,9 @@
 import { useState, useCallback } from "react";
 import { QrcodeSVG } from "react-qrcode-pretty";
-import { Download, Send, Check, Link } from "lucide-react";
+import { Download, Send, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import SmokeBackground from "@/components/SmokeBackground";
-import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
 
@@ -45,13 +44,11 @@ END:VCARD`;
     try {
       if (navigator.share) {
         await navigator.share({ title: "Bashayer Noury", url: siteUrl });
+        return;
       }
     } catch {
-      // Share cancelled or failed
+      // Share cancelled or failed, fall through to clipboard
     }
-  };
-
-  const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(siteUrl);
     } catch {
@@ -113,39 +110,27 @@ END:VCARD`;
 
         {/* Actions */}
         <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
-          <div className="flex items-center gap-3 w-full">
-            {/* Share pill */}
-            <div className="flex items-center flex-1 rounded-full bg-foreground">
-              <button
-                onClick={handleShare}
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background ml-1"
-                aria-label="Share"
-              >
-                <Send size={16} />
-              </button>
-              <span className="flex-1 text-center py-3 text-sm font-medium text-background pr-3">
-                Share
-              </span>
-            </div>
-            {/* Copy Link pill */}
-            <div
-              className={`flex items-center flex-1 rounded-full transition-all duration-300 ${
-                copied ? "bg-accent" : "bg-foreground/10 border border-foreground/20"
+          <div
+            className={`flex items-center w-full rounded-full transition-all duration-300 ${
+              copied
+                ? "bg-accent"
+                : "bg-foreground/10 border border-foreground/20"
+            }`}
+          >
+            <span className={`flex-1 pl-5 py-3 text-sm font-medium ${copied ? "text-accent-foreground" : "text-foreground"}`}>
+              {copied ? "Copied!" : "bybash.lovable.app"}
+            </span>
+            <button
+              onClick={handleShare}
+              className={`flex items-center justify-center w-10 h-10 rounded-full mr-1 transition-all ${
+                copied
+                  ? "bg-accent-foreground/20 text-accent-foreground"
+                  : "bg-foreground text-background hover:opacity-90"
               }`}
+              aria-label="Share"
             >
-              <button
-                onClick={handleCopyLink}
-                className={`flex items-center justify-center w-10 h-10 rounded-full ml-1 transition-all ${
-                  copied ? "bg-accent-foreground/20 text-accent-foreground" : "bg-foreground/20 text-foreground"
-                }`}
-                aria-label="Copy link"
-              >
-                {copied ? <Check size={16} /> : <Link size={16} />}
-              </button>
-              <span className={`flex-1 text-center py-3 text-sm font-medium pr-3 ${copied ? "text-accent-foreground" : "text-foreground"}`}>
-                {copied ? "Copied!" : "Copy Link"}
-              </span>
-            </div>
+              {copied ? <Check size={16} /> : <Send size={16} />}
+            </button>
           </div>
           <button
             onClick={handleSaveContact}
@@ -162,7 +147,6 @@ END:VCARD`;
           </a>
         </div>
       </motion.div>
-      <Footer />
     </div>
   );
 };
