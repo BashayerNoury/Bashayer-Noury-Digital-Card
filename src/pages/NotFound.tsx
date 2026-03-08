@@ -46,7 +46,7 @@ const NotFound = () => {
           <Home size={16} className="sm:w-[18px] sm:h-[18px]" />
           Back Home
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 };
