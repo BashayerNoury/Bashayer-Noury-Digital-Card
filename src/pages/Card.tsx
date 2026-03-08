@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { QrcodeSvg } from "react-qrcode-pretty";
+import { QrcodeSVG } from "react-qrcode-pretty";
 import { Download, Share2, Check } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
