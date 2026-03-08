@@ -1,5 +1,6 @@
 import { Mail, MessageCircle, Linkedin } from "lucide-react";
 import SmokeBackground from "@/components/SmokeBackground";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const skills = ["Product Management", "Vibe Coding", "MVP", "MLP", "GTM"];
 
