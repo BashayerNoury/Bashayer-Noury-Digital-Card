@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { QR } from "react-qr-rounded";
-import { Download, Share2 } from "lucide-react";
+import { Download, Share2, Check } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
