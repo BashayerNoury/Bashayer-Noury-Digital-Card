@@ -64,12 +64,15 @@ const Index = () => {
             <Mail size={16} className="sm:w-[18px] sm:h-[18px]" />
             Email me
           </a>
-          <Link
-            to="/card"
-            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-foreground/40 text-foreground text-sm sm:text-base font-medium hover:bg-secondary hover:border-foreground/60 transition-colors">
-            <QrCode size={16} className="sm:w-[18px] sm:h-[18px]" />
-            My Card
-          </Link>
+          <div className="relative inline-flex">
+            <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-muted-foreground/30 via-foreground/20 to-muted-foreground/30 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
+            <Link
+              to="/card"
+              className="relative inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-foreground/40 text-foreground text-sm sm:text-base font-medium hover:bg-secondary hover:border-foreground/60 transition-colors bg-background">
+              <QrCode size={16} className="sm:w-[18px] sm:h-[18px]" />
+              My Card
+            </Link>
+          </div>
         </div>
 
         <div className="border-t border-border pt-4 sm:pt-6 flex items-center justify-between gap-3">
