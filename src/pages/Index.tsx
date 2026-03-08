@@ -46,9 +46,9 @@ const Index = () => {
             />
           </div>
           <div>
-            <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground mb-1">
+            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium tracking-[0.3em] uppercase mb-1">
               HEY THERE!
-            </p>
+            </span>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
               I'm <SlotText text="Bash." className="text-muted-foreground/80" startDelay={showSplash ? 2800 : 400} />
             </h1>
