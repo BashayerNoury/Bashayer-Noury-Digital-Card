@@ -144,7 +144,7 @@ END:VCARD`;
             ← Back to Portfolio
           </a>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
