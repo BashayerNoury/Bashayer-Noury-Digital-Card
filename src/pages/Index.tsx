@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
+import SlotText from "@/components/SlotText";
 import signatureDark from "@/assets/signature-dark.png";
 import signatureLight from "@/assets/signature-light.png";
 import profileImg from "@/assets/profile.jpeg";
@@ -40,7 +41,7 @@ const Index = () => {
               HEY THERE!
             </p>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
-              I'm <span className="text-muted-foreground/80">Bash.</span>
+              I'm <SlotText startDelay={showSplash ? 1500 : 0} />
             </h1>
           </div>
         </div>
