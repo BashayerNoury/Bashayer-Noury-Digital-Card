@@ -37,7 +37,7 @@ END:VCARD`;
       <ThemeToggle />
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
 
-      <div className="flex flex-col items-center gap-6 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '3.2s' : '0s', animationFillMode: 'both' }}>
+      <div className="flex flex-col items-center gap-6 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.8s' : '0s', animationFillMode: 'both' }}>
         <div className="text-center space-y-1">
           <h1 className="text-3xl font-bold text-foreground">Bashayer Noury</h1>
           <p className="text-muted-foreground text-sm tracking-wide">Product Manager</p>
