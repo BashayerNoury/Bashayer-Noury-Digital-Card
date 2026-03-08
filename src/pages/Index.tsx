@@ -42,12 +42,6 @@ const Index = () => {
 
         <div className="flex flex-wrap gap-3 mb-16">
           <a
-            href="mailto:bashayernoury@gmail.com"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/70 text-primary-foreground font-medium hover:opacity-90 hover:border-primary transition-opacity bg-primary">
-            <Mail size={18} />
-            Email me
-          </a>
-          <a
             href="https://wa.me/96597304442"
             target="_blank"
             rel="noopener noreferrer"
@@ -62,6 +56,12 @@ const Index = () => {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors">
             <Linkedin size={18} />
             LinkedIn
+          </a>
+          <a
+            href="mailto:bashayernoury@gmail.com"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/70 text-primary-foreground font-medium hover:opacity-90 hover:border-primary transition-opacity bg-primary">
+            <Mail size={18} />
+            Email me
           </a>
         </div>
 
