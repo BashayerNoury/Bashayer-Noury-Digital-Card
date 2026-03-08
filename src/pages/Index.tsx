@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import SlotText from "@/components/SlotText";
 import { Mail, Linkedin, QrCode } from "lucide-react";
 import { motion } from "framer-motion";
 import { getDailyQuote } from "@/data/quotes";
