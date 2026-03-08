@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 type SplashVariant = "home" | "card" | "notfound";
 
-const shimmer = "relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-foreground/5 before:to-transparent";
+const shimmerClass = "relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-foreground/5 before:to-transparent";
 
 const Block = ({ className }: { className: string }) => (
-  <div className={`rounded bg-muted-foreground/10 ${shimmer} ${className}`} />
+  <div className={`rounded bg-muted-foreground/10 ${shimmerClass} ${className}`} />
 );
 
 const HomeSkeleton = () => (
@@ -16,12 +16,12 @@ const HomeSkeleton = () => (
       <Block className="h-10 sm:h-14 w-48 mb-4" />
       <Block className="h-4 w-72 mb-6" />
       <div className="flex flex-wrap gap-2 mb-8">
-        {[80, 56, 64, 56, 64].map((w, i) => (
-          <Block key={i} className={`h-8 rounded-full`} style-placeholder="" />
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Block key={i} className="h-8 w-24 rounded-full" />
         ))}
       </div>
       <div className="flex flex-wrap gap-3 mb-10">
-        {[112, 100, 96, 96].map((_, i) => (
+        {Array.from({ length: 4 }).map((_, i) => (
           <Block key={i} className="h-11 w-28 rounded-lg" />
         ))}
       </div>
@@ -36,15 +36,11 @@ const HomeSkeleton = () => (
 const CardSkeleton = () => (
   <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
     <div className="flex flex-col items-center gap-6">
-      <div className="text-center space-y-2">
-        <Block className="h-8 w-52 mx-auto" />
-        <Block className="h-3 w-32 mx-auto" />
-      </div>
-      <Block className="h-[252px] w-[252px] rounded-2xl" />
-      <Block className="h-3 w-40 mx-auto" />
+      <Block className="h-20 w-20 rounded-full" />
+      <Block className="h-[280px] w-[252px] rounded-2xl" />
       <div className="flex flex-col gap-3 w-full max-w-xs">
-        <Block className="h-12 w-full rounded-lg" />
-        <Block className="h-12 w-full rounded-lg" />
+        <Block className="h-12 w-full rounded-full" />
+        <Block className="h-12 w-full rounded-full" />
       </div>
     </div>
   </div>

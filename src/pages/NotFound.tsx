@@ -1,6 +1,5 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { useEffect } from "react";
 import { Home } from "lucide-react";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
