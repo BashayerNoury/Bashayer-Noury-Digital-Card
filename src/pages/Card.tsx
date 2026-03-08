@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { QrcodeSVG } from "react-qrcode-pretty";
-import { Download, Send, Check } from "lucide-react";
+import { Download, Send, Check, Copy } from "lucide-react";
 import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import SmokeBackground from "@/components/SmokeBackground";
@@ -40,15 +40,7 @@ END:VCARD`;
     URL.revokeObjectURL(url);
   };
 
-  const handleShare = async () => {
-    try {
-      if (navigator.share) {
-        await navigator.share({ title: "Bashayer Noury", url: siteUrl });
-        return;
-      }
-    } catch {
-      // Share cancelled or failed, fall through to clipboard
-    }
+  const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(siteUrl);
     } catch {
@@ -63,6 +55,16 @@ END:VCARD`;
     }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "Bashayer Noury", url: siteUrl });
+      } catch {
+        // Share cancelled
+      }
+    }
   };
 
   return (
@@ -121,15 +123,22 @@ END:VCARD`;
               {copied ? "Copied!" : "bybash.lovable.app"}
             </span>
             <button
-              onClick={handleShare}
+              onClick={handleCopy}
               className={`flex items-center justify-center w-10 h-10 rounded-full mr-1 transition-all ${
                 copied
                   ? "bg-accent-foreground/20 text-accent-foreground"
-                  : "bg-foreground text-background hover:opacity-90"
+                  : "bg-foreground/20 text-foreground hover:opacity-90"
               }`}
+              aria-label="Copy"
+            >
+              {copied ? <Check size={16} /> : <Copy size={16} />}
+            </button>
+            <button
+              onClick={handleShare}
+              className="flex items-center justify-center w-10 h-10 rounded-full mr-1 transition-all bg-foreground text-background hover:opacity-90"
               aria-label="Share"
             >
-              {copied ? <Check size={16} /> : <Send size={16} />}
+              <Send size={16} />
             </button>
           </div>
           <button
