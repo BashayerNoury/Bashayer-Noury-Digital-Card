@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { QrcodeSVG } from "react-qrcode-pretty";
 import { Download, Send, Check } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
 
 const Card = () => {
   const [copied, setCopied] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
+
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
+  }, []);
 
   const siteUrl = "https://bybash.lovable.app";
 
