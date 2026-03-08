@@ -64,38 +64,39 @@ END:VCARD`;
       <ThemeToggle />
       {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
 
-      <div className="flex flex-col items-center gap-6 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
+      <div className="flex flex-col items-center gap-8 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
 
-        {/* Profile photo */}
-        <div className="relative -mb-2 z-10">
-          <img
-            src={profileImg}
-            alt="Bashayer Noury"
-            className="w-20 h-20 rounded-full object-cover border-4 border-background shadow-lg"
-          />
+        {/* Title section */}
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-foreground mb-2">QR code</h1>
+          <p className="text-muted-foreground text-sm max-w-[280px] leading-relaxed">
+            Share your unique QR code and it will redirect people to your profile when scanned
+          </p>
         </div>
 
-        {/* Dark card with QR */}
-        <div className="relative animate-scale-in" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '1.8s' : '0.3s', animationFillMode: 'both' }}>
-          <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-muted-foreground/20 via-muted-foreground/10 to-muted-foreground/20 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
-          <div className="relative bg-card rounded-2xl p-6 pt-10 flex flex-col items-center gap-4 shadow-xl border border-border">
-            <div className="w-[200px] h-[200px] overflow-hidden flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">
-              <QrcodeSVG
-                value={siteUrl}
-                variant={{ eyes: "gravity", body: "dots" }}
-                color="hsl(var(--foreground))"
-                bgColor="transparent"
-                padding={0}
-              />
-            </div>
-            <h1 className="text-lg font-bold text-foreground tracking-wide uppercase">
-              Bashayer Noury
-            </h1>
-            <p className="text-muted-foreground text-xs tracking-wider -mt-3">
-              Product Manager
-            </p>
+        {/* QR with profile overlay */}
+        <div className="relative">
+          <div className="w-[220px] h-[220px] overflow-hidden flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">
+            <QrcodeSVG
+              value={siteUrl}
+              variant={{ eyes: "gravity", body: "dots" }}
+              color="hsl(var(--foreground))"
+              bgColor="transparent"
+              padding={0}
+            />
+          </div>
+          {/* Profile photo centered on QR */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <img
+              src={profileImg}
+              alt="Bashayer Noury"
+              className="w-14 h-14 rounded-full object-cover border-3 border-background shadow-lg"
+            />
           </div>
         </div>
+
+        {/* URL below QR */}
+        <p className="text-foreground font-medium text-base -mt-4">bybash.lovable.app</p>
 
         {/* URL display */}
         <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
