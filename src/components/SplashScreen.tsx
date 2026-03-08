@@ -1,82 +1,82 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const TARGET = "Bash.";
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
-const SPIN_INTERVAL = 50;
-const LOCK_DELAY = 400; // ms between each letter locking
+const SkeletonCard = ({ delay }: { delay: number }) => (
+  <motion.div
+    className="flex flex-col gap-2"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.3, delay }}
+  >
+    <div className="w-full aspect-video rounded-lg bg-muted-foreground/10 animate-pulse" />
+    <div className="flex items-center gap-2">
+      <div className="w-6 h-6 rounded-full bg-muted-foreground/10 animate-pulse flex-shrink-0" />
+      <div className="flex-1 space-y-1.5">
+        <div className="h-2.5 w-4/5 rounded bg-muted-foreground/10 animate-pulse" />
+        <div className="h-2 w-3/5 rounded bg-muted-foreground/10 animate-pulse" />
+      </div>
+    </div>
+  </motion.div>
+);
 
 const SplashScreen = ({
   onComplete,
-  variant = "home",
 }: {
   onComplete: () => void;
   variant?: string;
 }) => {
-  const [phase, setPhase] = useState<"loading" | "exit">("loading");
-  const [displayChars, setDisplayChars] = useState<string[]>(
-    Array(TARGET.length).fill(" ")
-  );
-  const [lockedCount, setLockedCount] = useState(0);
+  const [phase, setPhase] = useState<"welcome" | "loading" | "exit">("welcome");
 
-  // Spin unlocked characters randomly
   useEffect(() => {
-    if (phase !== "loading") return;
-    const interval = setInterval(() => {
-      setDisplayChars((prev) =>
-        prev.map((ch, i) =>
-          i < lockedCount
-            ? TARGET[i]
-            : CHARS[Math.floor(Math.random() * CHARS.length)]
-        )
-      );
-    }, SPIN_INTERVAL);
-    return () => clearInterval(interval);
-  }, [phase, lockedCount]);
-
-  // Lock letters one by one
-  useEffect(() => {
-    if (phase !== "loading") return;
-    if (lockedCount >= TARGET.length) {
-      // All locked — hold briefly then exit
-      const exitTimer = setTimeout(() => {
+    if (phase === "welcome") {
+      const t = setTimeout(() => setPhase("loading"), 1200);
+      return () => clearTimeout(t);
+    }
+    if (phase === "loading") {
+      const t = setTimeout(() => {
         setPhase("exit");
         setTimeout(onComplete, 500);
-      }, 600);
-      return () => clearTimeout(exitTimer);
+      }, 1400);
+      return () => clearTimeout(t);
     }
-    const lockTimer = setTimeout(() => {
-      setLockedCount((c) => c + 1);
-    }, LOCK_DELAY + (lockedCount === 0 ? 300 : 0)); // extra initial delay
-    return () => clearTimeout(lockTimer);
-  }, [phase, lockedCount, onComplete]);
+  }, [phase, onComplete]);
 
   return (
     <AnimatePresence>
-      {phase === "loading" && (
+      {phase === "welcome" && (
         <motion.div
+          key="welcome"
           className="fixed inset-0 z-[100] bg-background flex items-center justify-center"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
-          <div className="flex items-center">
-            {displayChars.map((char, i) => (
-              <motion.span
-                key={i}
-                className={`text-4xl sm:text-5xl font-bold font-mono ${
-                  i < lockedCount
-                    ? "text-foreground"
-                    : "text-muted-foreground/40"
-                }`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: i * 0.05 }}
-                style={{ width: "1.2ch", textAlign: "center", display: "inline-block" }}
-              >
-                {char}
-              </motion.span>
-            ))}
+          <motion.p
+            className="text-lg font-medium text-muted-foreground"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          >
+            Welcome ✨
+          </motion.p>
+        </motion.div>
+      )}
+
+      {phase === "loading" && (
+        <motion.div
+          key="loading"
+          className="fixed inset-0 z-[100] bg-background flex items-center justify-center p-6 sm:p-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          <div className="w-full max-w-2xl">
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <SkeletonCard key={i} delay={i * 0.05} />
+              ))}
+            </div>
           </div>
         </motion.div>
       )}
