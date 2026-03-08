@@ -43,7 +43,7 @@ const SmokeBackground = () => {
 
     let time = 0;
 
-    const getSmokColor = () => {
+    const getSmokeColor = () => {
       const isDark = document.documentElement.classList.contains("dark");
       return isDark
         ? { r: 255, g: 255, b: 255 }
