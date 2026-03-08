@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { QrcodeSVG } from "react-qrcode-pretty";
-import { Download, Send, Check } from "lucide-react";
+import { Download, Send, Check, Link } from "lucide-react";
 import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import SmokeBackground from "@/components/SmokeBackground";
@@ -44,11 +44,13 @@ END:VCARD`;
     try {
       if (navigator.share) {
         await navigator.share({ title: "Bashayer Noury", url: siteUrl });
-        return;
       }
     } catch {
-      // Share cancelled or failed, fall through to clipboard
+      // Share cancelled or failed
     }
+  };
+
+  const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(siteUrl);
     } catch {
@@ -110,26 +112,28 @@ END:VCARD`;
 
         {/* Actions */}
         <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
-          <div
-            className={`flex items-center w-full rounded-full transition-all duration-300 ${
-              copied
-                ? "bg-accent"
-                : "bg-foreground/10 border border-foreground/20"
-            }`}
-          >
-            <span className={`flex-1 pl-5 py-3 text-sm font-medium ${copied ? "text-accent-foreground" : "text-foreground"}`}>
-              {copied ? "Copied!" : "bybash.lovable.app"}
-            </span>
+          <div className="flex items-center gap-3 w-full">
+            {/* Share button */}
             <button
               onClick={handleShare}
-              className={`flex items-center justify-center w-10 h-10 rounded-full mr-1 transition-all ${
-                copied
-                  ? "bg-accent-foreground/20 text-accent-foreground"
-                  : "bg-foreground text-background hover:opacity-90"
-              }`}
+              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-foreground text-background font-medium hover:opacity-90 transition-all text-sm"
               aria-label="Share"
             >
-              {copied ? <Check size={16} /> : <Send size={16} />}
+              <Send size={16} />
+              Share
+            </button>
+            {/* Copy link button */}
+            <button
+              onClick={handleCopyLink}
+              className={`flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-medium transition-all text-sm ${
+                copied
+                  ? "bg-accent text-accent-foreground"
+                  : "bg-foreground/10 border border-foreground/20 text-foreground hover:bg-foreground/20"
+              }`}
+              aria-label="Copy link"
+            >
+              {copied ? <Check size={16} /> : <Link size={16} />}
+              {copied ? "Copied!" : "Copy Link"}
             </button>
           </div>
           <button
