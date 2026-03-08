@@ -37,12 +37,25 @@ END:VCARD`;
     try {
       if (navigator.share) {
         await navigator.share({ title: "Bashayer Noury", url: siteUrl });
-      } else {
-        await navigator.clipboard.writeText(siteUrl);
-        alert("Link copied to clipboard!");
+        return;
       }
     } catch {
-      // User cancelled share
+      // Share cancelled or failed, fall through to clipboard
+    }
+    try {
+      await navigator.clipboard.writeText(siteUrl);
+      alert("Link copied to clipboard!");
+    } catch {
+      // Clipboard API blocked, use fallback
+      const textArea = document.createElement("textarea");
+      textArea.value = siteUrl;
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      alert("Link copied to clipboard!");
     }
   };
 
