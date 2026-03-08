@@ -56,6 +56,19 @@ const CardSkeleton = () => (
   </div>
 );
 
+const NotFoundSkeleton = () => (
+  <div className="flex flex-col items-center text-center px-4">
+    {/* OOPS label */}
+    <div className="h-3 w-16 rounded bg-muted-foreground/10 animate-pulse mb-4" />
+    {/* 404 */}
+    <div className="h-16 sm:h-20 w-40 rounded bg-muted-foreground/10 animate-pulse mb-4" />
+    {/* Subtitle */}
+    <div className="h-3 w-56 rounded bg-muted-foreground/10 animate-pulse mb-8" />
+    {/* Button */}
+    <div className="h-11 w-36 rounded-lg bg-muted-foreground/10 animate-pulse" />
+  </div>
+);
+
 const SplashScreen = ({
   onComplete,
   variant = "home",
@@ -109,7 +122,7 @@ const SplashScreen = ({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
         >
-          {variant === "card" ? <CardSkeleton /> : <HomeSkeleton />}
+          {variant === "card" ? <CardSkeleton /> : variant === "notfound" ? <NotFoundSkeleton /> : <HomeSkeleton />}
         </motion.div>
       )}
     </AnimatePresence>
