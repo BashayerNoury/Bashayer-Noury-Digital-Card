@@ -16,22 +16,22 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-6 relative">
+    <div className="h-screen overflow-hidden bg-background flex items-center justify-center px-6 relative">
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
-      <div className="max-w-2xl w-full py-20 relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.5s' : '0s', animationFillMode: 'both' }}>
+      <div className="max-w-2xl w-full relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.5s' : '0s', animationFillMode: 'both' }}>
         <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
           HEY THERE!
         </p>
 
-        <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-foreground">
           I'm <span className="text-muted-foreground/80">Bash.</span>
         </h1>
 
-        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl whitespace-pre-line">{"By day, I am a super star Product Manager. By nature, I'm still a person figuring things out."}</p>
+        <p className="text-muted-foreground text-base leading-relaxed mb-6 max-w-xl">{"By day, I am a super star Product Manager. By nature, I'm still a person figuring things out."}</p>
 
-        <div className="flex flex-wrap gap-3 mb-10">
+        <div className="flex flex-wrap gap-2 mb-8">
           {skills.map((skill) => <span
             key={skill}
             className="px-4 py-2 rounded-full border-2 border-foreground/30 text-sm text-foreground/70 font-medium backdrop-blur-sm">
@@ -40,7 +40,7 @@ const Index = () => {
           )}
         </div>
 
-        <div className="flex flex-wrap gap-3 mb-16">
+        <div className="flex flex-wrap gap-3 mb-10">
           <a
             href="https://wa.me/96597304442"
             target="_blank"
@@ -65,7 +65,7 @@ const Index = () => {
           </a>
         </div>
 
-        <div className="border-t border-border pt-8 flex items-center justify-between">
+        <div className="border-t border-border pt-6 flex items-center justify-between">
           <p className="text-muted-foreground text-sm italic whitespace-pre-line">{"Inspired by James Clear's 1% rule, I've made small improvement a daily ritual.\nAre you building yours?"}</p>
           <img src={signatureDark} alt="BN Signature" className="h-16 w-auto opacity-60 dark:hidden" />
           <img src={signatureLight} alt="BN Signature" className="h-16 w-auto opacity-60 hidden dark:block" />
