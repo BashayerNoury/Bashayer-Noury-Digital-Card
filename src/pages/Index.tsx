@@ -41,7 +41,7 @@ const Index = () => {
               HEY THERE!
             </p>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
-              I'm <span className="text-muted-foreground/80">Bash.</span>
+              I'm <SlotText startDelay={showSplash ? 1500 : 0} />
             </h1>
           </div>
         </div>
