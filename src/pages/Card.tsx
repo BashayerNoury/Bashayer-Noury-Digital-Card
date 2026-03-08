@@ -76,6 +76,20 @@ END:VCARD`;
               rounding={100}
               errorCorrectionLevel="H"
               style={{ width: 220, height: 220 }}
+              cutout
+              cutoutElement={
+                <img
+                  src={profileImg}
+                  alt="Bashayer Noury"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "50%",
+                    border: "3px solid white",
+                  }}
+                />
+              }
             >
               {siteUrl}
             </QR>
