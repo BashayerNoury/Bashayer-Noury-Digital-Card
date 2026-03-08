@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { QrcodeSVG } from "react-qrcode-pretty";
-import { Download, Send, Check } from "lucide-react";
+import { Download, Send, Check, Copy } from "lucide-react";
 import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import SmokeBackground from "@/components/SmokeBackground";
