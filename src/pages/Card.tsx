@@ -35,7 +35,7 @@ END:VCARD`;
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
       <ThemeToggle />
-      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+      {showSplash && <SignatureSplash onComplete={handleSplashComplete} />}
 
       <div className="flex flex-col items-center gap-6 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.5s' : '0s', animationFillMode: 'both' }}>
         <div className="text-center space-y-1">
