@@ -99,26 +99,28 @@ END:VCARD`;
 
         {/* URL display */}
         <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
-          <button
-            onClick={handleShare}
-            className={`inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-full font-medium transition-all duration-300 text-sm ${
+          <div
+            className={`flex items-center w-full rounded-full transition-all duration-300 ${
               copied
-                ? "bg-accent text-accent-foreground scale-95"
-                : "bg-primary text-primary-foreground hover:opacity-90"
+                ? "bg-accent"
+                : "bg-foreground/10 border border-foreground/20"
             }`}
           >
-            {copied ? (
-              <>
-                <Check size={16} />
-                Copied!
-              </>
-            ) : (
-              <>
-                bybash.lovable.app
-                <Share2 size={16} className="ml-1 opacity-70" />
-              </>
-            )}
-          </button>
+            <span className={`flex-1 pl-5 py-3 text-sm font-medium ${copied ? "text-accent-foreground" : "text-foreground"}`}>
+              {copied ? "Copied!" : "bybash.lovable.app"}
+            </span>
+            <button
+              onClick={handleShare}
+              className={`flex items-center justify-center w-10 h-10 rounded-full mr-1 transition-all ${
+                copied
+                  ? "bg-accent-foreground/20 text-accent-foreground"
+                  : "bg-foreground text-background hover:opacity-90"
+              }`}
+              aria-label="Share"
+            >
+              {copied ? <Check size={16} /> : <Send size={16} />}
+            </button>
+          </div>
           <button
             onClick={handleSaveContact}
             className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm"
