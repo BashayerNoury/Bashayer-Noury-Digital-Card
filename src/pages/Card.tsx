@@ -113,7 +113,7 @@ END:VCARD`;
 
         {/* Actions */}
         <div className="flex flex-col items-center gap-3 w-full max-w-sm mt-2">
-          <div className="flex items-center w-full rounded-full border border-foreground/20 bg-foreground/5 py-1.5 pl-7 pr-2 transition-all duration-300">
+          <div className="flex items-center w-full rounded-2xl border border-foreground/30 shadow-[0_0_15px_rgba(var(--foreground-rgb),0.15),inset_0_0_15px_rgba(var(--foreground-rgb),0.05)] bg-foreground/5 py-2 pl-7 pr-2 transition-all duration-300 ring-1 ring-foreground/10 ring-offset-2 ring-offset-background">
             <span className={`flex-1 py-2 pr-3 text-sm sm:text-base font-medium tracking-tight ${copied ? "text-primary" : "text-foreground"}`}>
               {copied ? "Copied!" : "bybash.lovable.app"}
             </span>
@@ -136,7 +136,7 @@ END:VCARD`;
           </div>
           <button
             onClick={handleSaveContact}
-            className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm"
+            className="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-2xl border border-foreground/30 shadow-[0_0_15px_rgba(var(--foreground-rgb),0.15),inset_0_0_15px_rgba(var(--foreground-rgb),0.05)] ring-1 ring-foreground/10 ring-offset-2 ring-offset-background text-foreground font-medium hover:bg-foreground/5 transition-all text-sm"
           >
             <Download size={16} />
             Save Contact
