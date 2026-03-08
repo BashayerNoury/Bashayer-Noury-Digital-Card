@@ -64,6 +64,12 @@ const Index = () => {
             <Mail size={18} />
             Email me
           </a>
+          <Link
+            to="/card"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors">
+            <QrCode size={18} />
+            My Card
+          </Link>
         </div>
 
         <div className="border-t border-border pt-6 flex items-center justify-between">
