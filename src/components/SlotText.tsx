@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#&*?.";
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 const SPIN_INTERVAL = 40;
 const LOCK_DELAY = 350;
 
