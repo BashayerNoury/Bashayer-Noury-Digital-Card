@@ -25,7 +25,7 @@ const Index = () => {
           HEY THERE!
         </p>
 
-        <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-foreground">
           I'm <span className="text-muted-foreground/80">Bash.</span>
         </h1>
 
