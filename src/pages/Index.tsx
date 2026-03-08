@@ -30,7 +30,7 @@ const Index = () => {
           I'm <span className="text-muted-foreground/80">Bash.</span>
         </h1>
 
-        <p className="text-muted-foreground text-base leading-relaxed mb-6 max-w-xl">{"By day, I am a super star Product Manager. By nature, I'm still a person figuring things out."}</p>
+        <p className="text-muted-foreground text-base leading-relaxed mb-6 max-w-xl">{"A Product Manager based on "}</p>
 
         <div className="flex flex-wrap gap-2 mb-8">
           {skills.map((skill) => <span
