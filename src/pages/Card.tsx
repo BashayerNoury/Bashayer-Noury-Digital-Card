@@ -68,7 +68,7 @@ END:VCARD`;
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
+    <div className="min-h-screen overflow-hidden bg-background flex flex-col items-center justify-center px-6 relative">
       {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
@@ -156,6 +156,12 @@ END:VCARD`;
           </a>
         </div>
       </motion.div>
+      <p className="absolute bottom-3 text-muted-foreground/40 text-[10px] sm:text-xs">
+        Made with ♥ In{" "}
+        <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-muted-foreground/60 transition-colors">
+          Lovable
+        </a>
+      </p>
     </div>
   );
 };
