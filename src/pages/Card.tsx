@@ -34,10 +34,15 @@ END:VCARD`;
   };
 
   const handleShare = async () => {
-    if (navigator.share) {
-      await navigator.share({ title: "Bashayer Noury", url: siteUrl });
-    } else {
-      await navigator.clipboard.writeText(siteUrl);
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "Bashayer Noury", url: siteUrl });
+      } else {
+        await navigator.clipboard.writeText(siteUrl);
+        alert("Link copied to clipboard!");
+      }
+    } catch {
+      // User cancelled share
     }
   };
 
@@ -59,8 +64,8 @@ END:VCARD`;
 
         {/* Dark card with QR */}
         <div className="relative animate-scale-in" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '1.8s' : '0.3s', animationFillMode: 'both' }}>
-          <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-muted-foreground/30 via-foreground/20 to-muted-foreground/30 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
-          <div className="relative bg-foreground rounded-2xl p-6 pt-10 flex flex-col items-center gap-4 shadow-xl">
+          <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-neutral-500/20 via-neutral-400/15 to-neutral-500/20 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
+          <div className="relative bg-neutral-900 rounded-2xl p-6 pt-10 flex flex-col items-center gap-4 shadow-xl">
             <QR
               color="#ffffff"
               backgroundColor="transparent"
@@ -70,10 +75,10 @@ END:VCARD`;
             >
               {siteUrl}
             </QR>
-            <h1 className="text-lg font-bold text-background tracking-wide uppercase">
+            <h1 className="text-lg font-bold text-white tracking-wide uppercase">
               Bashayer Noury
             </h1>
-            <p className="text-background/60 text-xs tracking-wider -mt-3">
+            <p className="text-white/50 text-xs tracking-wider -mt-3">
               Product Manager
             </p>
           </div>
