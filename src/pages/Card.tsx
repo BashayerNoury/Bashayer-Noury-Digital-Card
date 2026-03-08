@@ -3,6 +3,7 @@ import { QrcodeSVG } from "react-qrcode-pretty";
 import { Download, Send, Check } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import profileImg from "@/assets/profile.jpeg";
+import qrLogo from "@/assets/qr-logo.png";
 
 const Card = () => {
   const [copied, setCopied] = useState(false);
@@ -85,6 +86,7 @@ END:VCARD`;
               color="hsl(var(--foreground))"
               bgColor="transparent"
               padding={0}
+              image={{ src: qrLogo, width: 50, height: 50, overlap: true }}
             />
           </div>
         </div>
