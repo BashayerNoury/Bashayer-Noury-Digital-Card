@@ -11,8 +11,6 @@ const Card = () => {
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
-    // Trigger QR reveal sequence after splash
-    setTimeout(() => setQrRevealed(true), 600);
   }, []);
 
   const siteUrl = "https://bybash.lovable.app";
