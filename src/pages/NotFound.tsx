@@ -48,6 +48,7 @@ const NotFound = () => {
           Back Home
         </Link>
       </motion.div>
+      <Footer />
     </div>
   );
 };

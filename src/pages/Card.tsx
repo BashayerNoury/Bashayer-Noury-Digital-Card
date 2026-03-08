@@ -162,6 +162,7 @@ END:VCARD`;
           </a>
         </div>
       </motion.div>
+      <Footer />
     </div>
   );
 };
