@@ -66,12 +66,22 @@ END:VCARD`;
 
       <div className="flex flex-col items-center gap-8 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
 
-        {/* Title section */}
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-2">QR code</h1>
-          <p className="text-muted-foreground text-sm max-w-[280px] leading-relaxed">
-            Share your unique QR code and it will redirect people to your profile when scanned
-          </p>
+        {/* Profile photo with maroon shadow */}
+        <div className="relative">
+          <div className="w-24 h-24 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
+          <img
+            src={profileImg}
+            alt="Bashayer Noury"
+            className="relative w-24 h-24 rounded-full object-cover border-4 border-background shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
+          />
+        </div>
+
+        {/* Name & title */}
+        <div className="text-center -mt-2">
+          <h1 className="text-2xl font-bold text-foreground mb-1">Bashayer Noury</h1>
+          <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium tracking-wide">
+            Product Manager
+          </span>
         </div>
 
         {/* QR with profile overlay */}
@@ -83,14 +93,6 @@ END:VCARD`;
               color="hsl(var(--foreground))"
               bgColor="transparent"
               padding={0}
-            />
-          </div>
-          {/* Profile photo centered on QR */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img
-              src={profileImg}
-              alt="Bashayer Noury"
-              className="w-14 h-14 rounded-full object-cover border-3 border-background shadow-lg"
             />
           </div>
         </div>
