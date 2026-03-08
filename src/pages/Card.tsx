@@ -114,7 +114,7 @@ END:VCARD`;
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
+        <div className="flex flex-col items-center gap-3 w-full max-w-sm mt-2">
           <div className="flex items-center w-full rounded-full border border-foreground/20 bg-foreground/5 pl-1 transition-all duration-300">
             <span className={`flex-1 pl-4 sm:pl-5 py-3 text-sm sm:text-base font-medium tracking-tight ${copied ? "text-primary" : "text-foreground"}`}>
               {copied ? "Copied!" : "bybash.lovable.app"}
