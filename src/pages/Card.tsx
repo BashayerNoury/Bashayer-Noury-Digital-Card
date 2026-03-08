@@ -34,10 +34,15 @@ END:VCARD`;
   };
 
   const handleShare = async () => {
-    if (navigator.share) {
-      await navigator.share({ title: "Bashayer Noury", url: siteUrl });
-    } else {
-      await navigator.clipboard.writeText(siteUrl);
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "Bashayer Noury", url: siteUrl });
+      } else {
+        await navigator.clipboard.writeText(siteUrl);
+        alert("Link copied to clipboard!");
+      }
+    } catch {
+      // User cancelled share
     }
   };
 
