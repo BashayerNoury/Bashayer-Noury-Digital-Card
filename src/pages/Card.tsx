@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { QrcodeSVG } from "react-qrcode-pretty";
 import { Download, Send, Check } from "lucide-react";
+import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
