@@ -47,7 +47,7 @@ const SmokeBackground = () => {
       const isDark = document.documentElement.classList.contains("dark");
       return isDark
         ? { r: 255, g: 255, b: 255 }
-        : { r: 80, g: 80, b: 100 };
+        : { r: 120, g: 40, b: 40 };
     };
 
     const draw = () => {
