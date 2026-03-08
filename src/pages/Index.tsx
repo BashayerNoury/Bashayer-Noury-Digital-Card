@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { getDailyQuote } from "@/data/quotes";
 import { Link } from "react-router-dom";
 import SmokeBackground from "@/components/SmokeBackground";
+import Footer from "@/components/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 import signatureDark from "@/assets/signature-dark.png";
