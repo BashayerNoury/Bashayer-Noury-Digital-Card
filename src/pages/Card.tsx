@@ -7,7 +7,11 @@ import profileImg from "@/assets/profile.jpeg";
 
 const Card = () => {
   const [copied, setCopied] = useState(false);
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(() => {
+    if (sessionStorage.getItem("splashShown")) return false;
+    sessionStorage.setItem("splashShown", "true");
+    return true;
+  });
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
