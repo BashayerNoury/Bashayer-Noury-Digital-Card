@@ -45,9 +45,7 @@ END:VCARD`;
     }
     try {
       await navigator.clipboard.writeText(siteUrl);
-      alert("Link copied to clipboard!");
     } catch {
-      // Clipboard API blocked, use fallback
       const textArea = document.createElement("textarea");
       textArea.value = siteUrl;
       textArea.style.position = "fixed";
@@ -56,8 +54,9 @@ END:VCARD`;
       textArea.select();
       document.execCommand("copy");
       document.body.removeChild(textArea);
-      alert("Link copied to clipboard!");
     }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
