@@ -31,7 +31,7 @@ const Index = () => {
 
         <p className="text-muted-foreground text-base leading-relaxed mb-6 max-w-xl">{"By day, I am a super star Product Manager. By nature, I'm still a person figuring things out."}</p>
 
-        <div className="flex flex-wrap gap-3 mb-10">
+        <div className="flex flex-wrap gap-2 mb-8">
           {skills.map((skill) => <span
             key={skill}
             className="px-4 py-2 rounded-full border-2 border-foreground/30 text-sm text-foreground/70 font-medium backdrop-blur-sm">
