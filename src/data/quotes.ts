@@ -58,6 +58,20 @@ export const quotes: Quote[] = [
   { text: "The deeper that sorrow carves into your being, the more joy you can contain.", author: "Kahlil Gibran" },
   { text: "You talk when you cease to be at peace with your thoughts.", author: "Kahlil Gibran" },
   { text: "And ever has it been known that love knows not its own depth until the hour of separation.", author: "Kahlil Gibran" },
+
+  // Viktor E. Frankl – Man's Search for Meaning
+  { text: "When we are no longer able to change a situation, we are challenged to change ourselves.", author: "Viktor E. Frankl" },
+  { text: "Everything can be taken from a man but one thing: the last of the human freedoms — to choose one's attitude in any given set of circumstances.", author: "Viktor E. Frankl" },
+  { text: "Those who have a 'why' to live, can bear with almost any 'how'.", author: "Viktor E. Frankl" },
+  { text: "Between stimulus and response there is a space. In that space is our freedom and power to choose our response.", author: "Viktor E. Frankl" },
+  { text: "Life is never made unbearable by circumstances, but only by lack of meaning and purpose.", author: "Viktor E. Frankl" },
+
+  // Charlie Mackesy – The Boy, the Mole, the Fox and the Horse
+  { text: "\"What is the bravest thing you've ever said?\" asked the boy. \"Help,\" said the horse.", author: "Charlie Mackesy" },
+  { text: "\"What do you want to be when you grow up?\" \"Kind,\" said the boy.", author: "Charlie Mackesy" },
+  { text: "Most of the old moles I know wish they had listened less to their fears and more to their dreams.", author: "Charlie Mackesy" },
+  { text: "Sometimes I feel lost. Me too, said the horse, but we're together, and that's all that matters.", author: "Charlie Mackesy" },
+  { text: "Asking for help isn't giving up. It's refusing to give up.", author: "Charlie Mackesy" },
 ];
 
 /** Returns a deterministic quote based on the current date */
