@@ -97,22 +97,31 @@ END:VCARD`;
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className="flex flex-col gap-3 w-full max-w-xs mt-2">
+        {/* URL display */}
+        <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
           <button
             onClick={handleShare}
-            className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 uppercase tracking-wider text-sm ${
+            className={`inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-full font-medium transition-all duration-300 text-sm ${
               copied
                 ? "bg-accent text-accent-foreground scale-95"
                 : "bg-primary text-primary-foreground hover:opacity-90"
             }`}
           >
-            {copied ? "Copied!" : "Share Link"}
-            {copied ? <Check size={16} /> : <Share2 size={16} />}
+            {copied ? (
+              <>
+                <Check size={16} />
+                Copied!
+              </>
+            ) : (
+              <>
+                bybash.lovable.app
+                <Share2 size={16} className="ml-1 opacity-70" />
+              </>
+            )}
           </button>
           <button
             onClick={handleSaveContact}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm"
+            className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm"
           >
             <Download size={16} />
             Save Contact
