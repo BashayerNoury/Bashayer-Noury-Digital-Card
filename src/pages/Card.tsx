@@ -3,20 +3,26 @@ import { QrcodeSVG } from "react-qrcode-pretty";
 import { Download, Send, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
-import SplashScreen from "@/components/SplashScreen";
+import WelcomeSplash, { useIsFirstVisit } from "@/components/WelcomeSplash";
+import PageSkeleton from "@/components/PageSkeleton";
 import profileImg from "@/assets/profile.jpeg";
 
 const Card = () => {
   const [copied, setCopied] = useState(false);
-  const [showSplash, setShowSplash] = useState(() => {
-    if (sessionStorage.getItem("splashShown")) return false;
-    sessionStorage.setItem("splashShown", "true");
-    return true;
+  const isFirstVisit = useIsFirstVisit();
+  const [showWelcome, setShowWelcome] = useState(isFirstVisit);
+  const [pageReady, setPageReady] = useState(false);
+
+  const handleWelcomeComplete = useCallback(() => {
+    setShowWelcome(false);
+  }, []);
+
+  useState(() => {
+    const t = setTimeout(() => setPageReady(true), 100);
+    return () => clearTimeout(t);
   });
 
-  const handleSplashComplete = useCallback(() => {
-    setShowSplash(false);
-  }, []);
+  const showContent = !showWelcome && pageReady;
 
   const siteUrl = "https://bybash.lovable.app";
 
@@ -46,7 +52,7 @@ END:VCARD`;
         return;
       }
     } catch {
-      // Share cancelled or failed, fall through to clipboard
+      // Share cancelled or failed
     }
     try {
       await navigator.clipboard.writeText(siteUrl);
@@ -66,16 +72,16 @@ END:VCARD`;
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
-      {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
+      {showWelcome && <WelcomeSplash onComplete={handleWelcomeComplete} />}
+      {!showWelcome && !pageReady && <PageSkeleton variant="card" loading={!pageReady} />}
       <ThemeToggle />
 
       <motion.div
         className="flex flex-col items-center gap-8"
         initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
+        animate={showContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
       >
-        {/* Profile photo */}
         <div className="relative">
           <div className="w-24 h-24 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
           <img
@@ -85,7 +91,6 @@ END:VCARD`;
           />
         </div>
 
-        {/* Name & title */}
         <div className="text-center -mt-2">
           <h1 className="text-2xl font-bold text-foreground mb-1">Bashayer Noury</h1>
           <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium tracking-wide">
@@ -93,7 +98,6 @@ END:VCARD`;
           </span>
         </div>
 
-        {/* QR */}
         <div className="relative">
           <div className="w-[220px] h-[220px] overflow-hidden flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">
             <QrcodeSVG
@@ -106,7 +110,6 @@ END:VCARD`;
           </div>
         </div>
 
-        {/* Actions */}
         <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
           <div
             className={`flex items-center w-full rounded-full transition-all duration-300 ${
