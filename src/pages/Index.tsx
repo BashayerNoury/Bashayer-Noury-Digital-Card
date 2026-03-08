@@ -7,7 +7,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-6 relative">
       <SmokeBackground />
-      <div className="max-w-2xl w-full py-20 relative z-10">
+      <div className="max-w-2xl w-full py-20 relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationFillMode: 'both' }}>
         <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">
           Hey there
         </p>
