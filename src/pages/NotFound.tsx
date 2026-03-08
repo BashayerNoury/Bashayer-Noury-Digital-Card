@@ -1,12 +1,12 @@
-import { useState, useCallback, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 
 const NotFound = () => {
-  const location = useLocation();
+  
   const [showSplash, setShowSplash] = useState(() => {
     if (sessionStorage.getItem("splashShown")) return false;
     sessionStorage.setItem("splashShown", "true");
@@ -17,9 +17,6 @@ const NotFound = () => {
     setShowSplash(false);
   }, []);
 
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
 
   return (
     <div className="h-screen overflow-hidden bg-background flex items-center justify-center px-4 sm:px-6 py-4 relative">
