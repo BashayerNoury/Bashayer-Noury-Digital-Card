@@ -1,8 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return { text: "Good Morning", emoji: "☀️" };
+  if (hour >= 12 && hour < 17) return { text: "Good Afternoon", emoji: "🌤️" };
+  if (hour >= 17 && hour < 21) return { text: "Good Evening", emoji: "🌅" };
+  return { text: "Good Night", emoji: "🌙" };
+};
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState<"enter" | "exit">("enter");
+  const greeting = useMemo(() => getGreeting(), []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
