@@ -6,14 +6,15 @@ import { getDailyQuote } from "@/data/quotes";
 import { Link } from "react-router-dom";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
+import LanguageToggle from "@/components/LanguageToggle";
 import SplashScreen from "@/components/SplashScreen";
+import { useLanguage } from "@/i18n/LanguageContext";
 import signatureDark from "@/assets/signature-dark.png";
 import signatureLight from "@/assets/signature-light.png";
 import profileImg from "@/assets/profile.jpeg";
 
-const skills = ["Product Management", "AI", "MVP / MLP", "GTM"];
-
 const Index = () => {
+  const { t, isRTL } = useLanguage();
   const [showSplash, setShowSplash] = useState(() => {
     if (sessionStorage.getItem("splashShown")) return false;
     sessionStorage.setItem("splashShown", "true");
@@ -29,6 +30,7 @@ const Index = () => {
     <div className="h-screen overflow-hidden bg-background flex items-center justify-center px-4 sm:px-6 py-4 relative">
       {showSplash && <SplashScreen variant="home" onComplete={handleSplashComplete} />}
       <ThemeToggle />
+      <LanguageToggle />
       <SmokeBackground />
         <motion.div
           className="max-w-2xl w-full relative z-10"
@@ -41,24 +43,24 @@ const Index = () => {
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
             <img
               src={profileImg}
-              alt="Bashayer Noury"
+              alt={t.fullName}
               className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover ring-2 ring-foreground/10 shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
             />
           </div>
           <div>
             <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium tracking-[0.3em] uppercase mb-1">
-              HEY THERE!
+              {t.greeting}
             </span>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
-              I'm <SlotText text="Bash." className="text-muted-foreground/80" startDelay={showSplash ? 2800 : 400} />
+              {t.imBash} <SlotText text={t.bashDot} className="text-muted-foreground/80" startDelay={showSplash ? 2800 : 400} />
             </h1>
           </div>
         </div>
 
-        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3 sm:mb-6 max-w-xl">Bashayer Noury is a Product Manager based in 🇰🇼<br />Let's Connect!</p>
+        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3 sm:mb-6 max-w-xl">{t.bio}<br />{t.letsConnect}</p>
 
-        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-8">
-          {skills.map((skill) => <span
+        <div className={`flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-8 ${isRTL ? "flex-row-reverse" : ""}`}>
+          {t.skills.map((skill) => <span
             key={skill}
             className="px-3 sm:px-4 py-1 sm:py-2 rounded-full border-2 border-foreground/30 text-xs sm:text-sm text-foreground/70 font-medium backdrop-blur-sm">
               {skill}
@@ -125,7 +127,7 @@ const Index = () => {
         </motion.div>
         </motion.div>
         <p className="absolute bottom-3 text-muted-foreground text-[10px] sm:text-xs">
-          Made with <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="inline w-3.5 h-3.5 sm:w-4 sm:h-4 align-middle mx-0.5" /> In{" "}
+          {t.madeWith} <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="inline w-3.5 h-3.5 sm:w-4 sm:h-4 align-middle mx-0.5" /> {t.inText}{" "}
           <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
             Lovable
           </a>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const HomeSkeleton = () => (
   <div className="max-w-2xl w-full px-4 sm:px-6">
@@ -76,19 +77,20 @@ const SplashScreen = ({
   onComplete: () => void;
   variant?: string;
 }) => {
+  const { t } = useLanguage();
   const [phase, setPhase] = useState<"welcome" | "loading" | "exit">("welcome");
 
   useEffect(() => {
     if (phase === "welcome") {
-      const t = setTimeout(() => setPhase("loading"), 1200);
-      return () => clearTimeout(t);
+      const timer = setTimeout(() => setPhase("loading"), 1200);
+      return () => clearTimeout(timer);
     }
     if (phase === "loading") {
-      const t = setTimeout(() => {
+      const timer = setTimeout(() => {
         setPhase("exit");
         setTimeout(onComplete, 500);
       }, 1200);
-      return () => clearTimeout(t);
+      return () => clearTimeout(timer);
     }
   }, [phase, onComplete]);
 
@@ -108,7 +110,7 @@ const SplashScreen = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            Welcome ✨
+            {t.welcome}
           </motion.p>
         </motion.div>
       )}
