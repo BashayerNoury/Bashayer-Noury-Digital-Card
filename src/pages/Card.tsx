@@ -60,11 +60,11 @@ END:VCARD`;
   };
 
   const handleShare = async () => {
+    if (!navigator.share) return;
     try {
       await navigator.share({ title: "Bashayer Noury", url: siteUrl });
     } catch {
-      // Share not supported or cancelled — copy as fallback
-      await copyToClipboard();
+      // Share cancelled
     }
   };
 
