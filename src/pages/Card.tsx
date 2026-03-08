@@ -37,13 +37,13 @@ END:VCARD`;
       <ThemeToggle />
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
 
-      <div className="flex flex-col items-center gap-6 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.8s' : '0s', animationFillMode: 'both' }}>
+      <div className="flex flex-col items-center gap-6 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.0s' : '0s', animationFillMode: 'both' }}>
         <div className="text-center space-y-1">
           <h1 className="text-3xl font-bold text-foreground">Bashayer Noury</h1>
           <p className="text-muted-foreground text-sm tracking-wide">Product Manager</p>
         </div>
 
-        <div className="relative animate-scale-in" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '2.8s' : '0.3s', animationFillMode: 'both' }}>
+        <div className="relative animate-scale-in" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '2.3s' : '0.3s', animationFillMode: 'both' }}>
           <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-muted-foreground/30 via-foreground/20 to-muted-foreground/30 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
           <div className="relative p-6 bg-white rounded-2xl shadow-lg transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]">
             <QR

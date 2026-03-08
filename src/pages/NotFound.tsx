@@ -23,7 +23,7 @@ const NotFound = () => {
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
-      <div className="max-w-2xl w-full relative z-10 animate-fade-in text-center" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.8s' : '0s', animationFillMode: 'both' }}>
+      <div className="max-w-2xl w-full relative z-10 animate-fade-in text-center" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.0s' : '0s', animationFillMode: 'both' }}>
         <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground mb-2 sm:mb-4">
           OOPS!
         </p>
