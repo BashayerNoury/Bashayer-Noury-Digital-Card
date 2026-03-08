@@ -112,23 +112,17 @@ END:VCARD`;
 
         {/* Actions */}
         <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
-          <div
-            className={`flex items-center w-full rounded-full transition-all duration-300 ${
-              copied
-                ? "bg-accent"
-                : "bg-foreground/10 border border-foreground/20"
-            }`}
-          >
-            <span className={`flex-1 pl-5 py-3 text-sm font-medium ${copied ? "text-accent-foreground" : "text-foreground"}`}>
+          <div className="flex items-center w-full rounded-full border border-foreground/20 bg-foreground/5 pl-1 transition-all duration-300">
+            <span className={`flex-1 pl-4 sm:pl-5 py-3 text-sm sm:text-base font-medium tracking-tight ${copied ? "text-primary" : "text-foreground"}`}>
               {copied ? "Copied!" : "bybash.lovable.app"}
             </span>
-            <div className="flex items-center gap-0 mr-1">
+            <div className="flex items-center mr-1">
               <button
                 onClick={handleCopy}
-                className={`flex items-center justify-center w-10 h-10 rounded-full transition-all ${
+                className={`flex items-center justify-center w-11 h-11 rounded-full transition-all ${
                   copied
-                    ? "bg-accent-foreground/20 text-accent-foreground"
-                    : "bg-foreground/20 text-foreground hover:opacity-90"
+                    ? "bg-primary/20 text-primary"
+                    : "bg-foreground/10 text-foreground hover:bg-foreground/15"
                 }`}
                 aria-label="Copy"
               >
@@ -136,7 +130,7 @@ END:VCARD`;
               </button>
               <button
                 onClick={handleShare}
-                className="flex items-center justify-center w-10 h-10 rounded-full transition-all bg-foreground text-background hover:opacity-90"
+                className="flex items-center justify-center w-11 h-11 rounded-full transition-all bg-foreground text-background hover:opacity-90"
                 aria-label="Share"
               >
                 <Send size={16} />
