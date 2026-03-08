@@ -47,13 +47,13 @@ const NotFound = () => {
           Back Home
         </Link>
       </motion.div>
-      <p className="absolute bottom-3 text-muted-foreground text-[10px] sm:text-xs">
+      <p className="absolute bottom-4 text-muted-foreground text-[10px] sm:text-xs">
         Made with <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="inline w-3.5 h-3.5 sm:w-4 sm:h-4 align-middle mx-0.5" /> In{" "}
         <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
           Lovable
         </a>
       </p>
-      <p className="absolute bottom-0.5 text-muted-foreground/40 text-[8px] sm:text-[10px]">v1.0.0</p>
+      <p className="absolute bottom-1 text-muted-foreground/40 text-[8px] sm:text-[10px]">v1.0.0</p>
     </div>
   );
 };
