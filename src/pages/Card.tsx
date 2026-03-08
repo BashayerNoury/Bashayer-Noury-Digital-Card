@@ -77,21 +77,21 @@ END:VCARD`;
 
         {/* Dark card with QR */}
         <div className="relative animate-scale-in" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '1.8s' : '0.3s', animationFillMode: 'both' }}>
-          <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-neutral-500/20 via-neutral-400/15 to-neutral-500/20 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
-          <div className="relative bg-neutral-900 rounded-2xl p-6 pt-10 flex flex-col items-center gap-4 shadow-xl">
+          <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-muted-foreground/20 via-muted-foreground/10 to-muted-foreground/20 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
+          <div className="relative bg-card rounded-2xl p-6 pt-10 flex flex-col items-center gap-4 shadow-xl border border-border">
             <QR
-              color="#ffffff"
-              backgroundColor="#171717"
+              color="currentColor"
+              backgroundColor="transparent"
               rounding={100}
               errorCorrectionLevel="H"
-              style={{ width: 200, height: 200 }}
+              style={{ width: 200, height: 200, color: "hsl(var(--foreground))" }}
             >
               {siteUrl}
             </QR>
-            <h1 className="text-lg font-bold text-white tracking-wide uppercase">
+            <h1 className="text-lg font-bold text-foreground tracking-wide uppercase">
               Bashayer Noury
             </h1>
-            <p className="text-white/50 text-xs tracking-wider -mt-3">
+            <p className="text-muted-foreground text-xs tracking-wider -mt-3">
               Product Manager
             </p>
           </div>
