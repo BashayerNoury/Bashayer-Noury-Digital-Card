@@ -75,10 +75,10 @@ END:VCARD`;
             >
               {siteUrl}
             </QR>
-            <h1 className="text-lg font-bold text-background tracking-wide uppercase">
+            <h1 className="text-lg font-bold text-white tracking-wide uppercase">
               Bashayer Noury
             </h1>
-            <p className="text-background/60 text-xs tracking-wider -mt-3">
+            <p className="text-white/50 text-xs tracking-wider -mt-3">
               Product Manager
             </p>
           </div>
