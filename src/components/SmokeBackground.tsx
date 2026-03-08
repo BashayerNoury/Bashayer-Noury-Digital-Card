@@ -27,24 +27,24 @@ const SmokeBackground = () => {
         : { r: 100, g: 20, b: 40 };
     };
 
-    // Yin-yang flowing tendrils — orbit around center in opposing S-curves
     const tendrils: {
-      angleOffset: number; radiusBase: number; speed: number;
-      amplitude: number; thickness: number; opacity: number;
-      phaseShift: number; layers: number;
+      x: number; y: number; speed: number; amplitude: number;
+      frequency: number; phase: number; thickness: number;
+      opacity: number; curve: number; drift: number;
     }[] = [];
 
-    const count = 8;
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < 6; i++) {
       tendrils.push({
-        angleOffset: (i / count) * Math.PI * 2,
-        radiusBase: 120 + Math.random() * 100,
-        speed: 0.15 + Math.random() * 0.15,
-        amplitude: 40 + Math.random() * 60,
-        thickness: 50 + Math.random() * 120,
-        opacity: 0.05 + Math.random() * 0.1,
-        phaseShift: Math.random() * Math.PI * 2,
-        layers: 3,
+        x: -200 + Math.random() * 200,
+        y: h * 0.3 + Math.random() * h * 0.4,
+        speed: 0.3 + Math.random() * 0.5,
+        amplitude: 80 + Math.random() * 120,
+        frequency: 0.002 + Math.random() * 0.003,
+        phase: Math.random() * Math.PI * 2,
+        thickness: 60 + Math.random() * 140,
+        opacity: 0.06 + Math.random() * 0.12,
+        curve: 0.5 + Math.random() * 1.5,
+        drift: (Math.random() - 0.5) * 0.3,
       });
     }
 
@@ -52,33 +52,25 @@ const SmokeBackground = () => {
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
-      time += 0.006;
+      time += 0.008;
       const color = getSmokeColor();
-      const cx = w / 2;
-      const cy = h / 2;
 
       for (const t of tendrils) {
         ctx.save();
         const points: { x: number; y: number }[] = [];
-        const steps = 100;
+        const steps = 80;
 
         for (let i = 0; i <= steps; i++) {
           const progress = i / steps;
-          const angle = t.angleOffset + progress * Math.PI * 2 + time * t.speed;
-
-          // Yin-yang S-curve: radius modulates with a sine that creates the teardrop shape
-          const yinYangCurve = Math.sin(progress * Math.PI * 2 + t.phaseShift + time * 0.3);
-          const radius = t.radiusBase + yinYangCurve * t.amplitude;
-
-          // Add organic wobble
-          const wobble = Math.sin(progress * Math.PI * 6 + time * 0.5) * 15;
-
-          const px = cx + Math.cos(angle) * (radius + wobble);
-          const py = cy + Math.sin(angle) * (radius + wobble) * 0.85; // slight vertical compression
+          const px = progress * (w + 400) - 200;
+          const wave1 = Math.sin(progress * Math.PI * t.curve + t.phase + time * t.speed) * t.amplitude;
+          const wave2 = Math.sin(progress * Math.PI * 2.5 + t.phase * 1.5 + time * t.speed * 0.7) * t.amplitude * 0.4;
+          const wave3 = Math.sin(progress * Math.PI * 4 + time * 0.3) * t.amplitude * 0.15;
+          const py = t.y + wave1 + wave2 + wave3 + Math.sin(time * 0.2) * 20 * t.drift;
           points.push({ x: px, y: py });
         }
 
-        for (let layer = 0; layer < t.layers; layer++) {
+        for (let layer = 0; layer < 3; layer++) {
           const layerThickness = t.thickness * (1 - layer * 0.3);
           const layerOpacity = t.opacity * (1 - layer * 0.25);
 
@@ -94,16 +86,28 @@ const SmokeBackground = () => {
           ctx.lineCap = "round";
           ctx.lineJoin = "round";
 
-          // Radial-style gradient along the path
-          const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, t.radiusBase + t.amplitude);
-          gradient.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 0.3})`);
-          gradient.addColorStop(0.5, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity})`);
+          const gradient = ctx.createLinearGradient(0, 0, w, 0);
+          gradient.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
+          gradient.addColorStop(0.15, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 0.5})`);
+          gradient.addColorStop(0.4, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity})`);
+          gradient.addColorStop(0.6, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 1.1})`);
+          gradient.addColorStop(0.85, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 0.5})`);
           gradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
 
           ctx.strokeStyle = gradient;
           ctx.stroke();
         }
 
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length - 2; i++) {
+          const xc = (points[i].x + points[i + 1].x) / 2;
+          const yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        ctx.lineWidth = 2 + Math.random() * 2;
+        ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${t.opacity * 0.3})`;
+        ctx.stroke();
         ctx.restore();
       }
 
