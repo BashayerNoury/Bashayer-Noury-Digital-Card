@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,6 +25,11 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      const t = localStorage.getItem("theme");
+      if (t === "light") document.documentElement.classList.remove("dark");
+      else if (!t && !window.matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.classList.remove("dark");
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

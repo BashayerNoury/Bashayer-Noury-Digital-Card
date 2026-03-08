@@ -1,11 +1,13 @@
 import { Mail, MessageCircle, Linkedin } from "lucide-react";
 import SmokeBackground from "@/components/SmokeBackground";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const skills = ["Product Management", "Vibe Coding", "MVP", "MLP", "GTM"];
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-6 relative">
+      <ThemeToggle />
       <SmokeBackground />
       <div className="max-w-2xl w-full py-20 relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationFillMode: 'both' }}>
         <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">
@@ -13,7 +15,7 @@ const Index = () => {
         </p>
 
         <h1 className="text-5xl sm:text-6xl font-bold mb-6 text-foreground">
-          I'm <span className="text-muted-foreground">Bash</span>
+          I'm <span className="text-muted-foreground/80">Bash</span>
         </h1>
 
         <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl whitespace-pre-line">{"By day, I am a super star Product Manager.\nBy nature, I'm still a person figuring things out."}</p>
