@@ -7,7 +7,7 @@ import SplashScreen from "@/components/SplashScreen";
 
 const Card = () => {
   const [showSplash, setShowSplash] = useState(true);
-  const [qrRevealed, setQrRevealed] = useState(false);
+  
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
