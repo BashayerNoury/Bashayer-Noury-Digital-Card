@@ -1,8 +1,28 @@
 import { QRCodeSVG } from "qrcode.react";
+import { Download } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const Card = () => {
   const siteUrl = "https://bybash.lovable.app";
+
+  const handleSaveContact = () => {
+    const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Bashayer Noury
+TEL;TYPE=CELL:+96597304442
+EMAIL:bashayernoury@gmail.com
+URL:https://www.linkedin.com/in/bashayernoury/
+URL:${siteUrl}
+END:VCARD`;
+
+    const blob = new Blob([vcard], { type: "text/vcard" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Bashayer_Noury.vcf";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
@@ -26,12 +46,21 @@ const Card = () => {
           </p>
         </div>
 
-        <a
-          href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm"
-        >
-          ← Back to Portfolio
-        </a>
+        <div className="flex flex-col gap-3 w-full max-w-xs">
+          <button
+            onClick={handleSaveContact}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/70 text-primary-foreground font-medium hover:opacity-90 transition-opacity bg-primary"
+          >
+            <Download size={18} />
+            Save Contact
+          </button>
+          <a
+            href="/"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm"
+          >
+            ← Back to Portfolio
+          </a>
+        </div>
       </div>
     </div>
   );
