@@ -43,7 +43,7 @@ const SmokeBackground = () => {
 
     let time = 0;
 
-    const getSmokColor = () => {
+    const getSmokeColor = () => {
       const isDark = document.documentElement.classList.contains("dark");
       return isDark
         ? { r: 255, g: 255, b: 255 }
@@ -53,7 +53,7 @@ const SmokeBackground = () => {
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
       time += 0.008;
-      const color = getSmokColor();
+      const color = getSmokeColor();
 
       for (const t of tendrils) {
         ctx.save();
@@ -117,7 +117,7 @@ const SmokeBackground = () => {
         { x: w * 0.5, y: h * 0.45, r: 350, o: 0.05 },
       ];
 
-      const color2 = getSmokColor();
+      const color2 = getSmokeColor();
       for (const g of glows) {
         const gx = g.x + Math.sin(time * 0.3) * 40;
         const gy = g.y + Math.cos(time * 0.25) * 30;

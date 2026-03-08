@@ -2,11 +2,9 @@ import { useState } from "react";
 import { QrcodeSVG } from "react-qrcode-pretty";
 import { Download, Send, Check } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
-import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
 
 const Card = () => {
-  const [showSplash] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const siteUrl = "https://bybash.lovable.app";
@@ -58,17 +56,15 @@ END:VCARD`;
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
       <ThemeToggle />
-      
 
-      <div className="flex flex-col items-center gap-8 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
-
-        {/* Profile photo with maroon shadow */}
+      <div className="flex flex-col items-center gap-8 animate-fade-in" style={{ animationDuration: '0.8s', animationFillMode: 'both' }}>
+        {/* Profile photo */}
         <div className="relative">
           <div className="w-24 h-24 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
           <img
             src={profileImg}
             alt="Bashayer Noury"
-            className="relative w-24 h-24 rounded-full object-cover border-4 border-background shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
+            className="relative w-24 h-24 rounded-full object-cover ring-2 ring-foreground/10 shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
           />
         </div>
 
@@ -80,7 +76,7 @@ END:VCARD`;
           </span>
         </div>
 
-        {/* QR with profile overlay */}
+        {/* QR */}
         <div className="relative">
           <div className="w-[220px] h-[220px] overflow-hidden flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">
             <QrcodeSVG
@@ -93,8 +89,7 @@ END:VCARD`;
           </div>
         </div>
 
-
-        {/* URL display */}
+        {/* Actions */}
         <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
           <div
             className={`flex items-center w-full rounded-full transition-all duration-300 ${
