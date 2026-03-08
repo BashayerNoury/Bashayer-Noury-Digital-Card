@@ -59,15 +59,24 @@ END:VCARD`;
 
   const handleShare = async () => {
     try {
-      if (navigator.share) {
-        await navigator.share({ title: "Bashayer Noury", url: siteUrl });
-        return;
-      }
+      await navigator.share({ title: "Bashayer Noury", url: siteUrl });
     } catch {
-      // Share cancelled or failed
+      // Share not supported or cancelled — copy as fallback
+      try {
+        await navigator.clipboard.writeText(siteUrl);
+      } catch {
+        const textArea = document.createElement("textarea");
+        textArea.value = siteUrl;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     }
-    // Fallback: open mailto or copy
-    window.open(`https://wa.me/?text=${encodeURIComponent("Check out Bashayer Noury's portfolio: " + siteUrl)}`, "_blank");
   };
 
   return (
