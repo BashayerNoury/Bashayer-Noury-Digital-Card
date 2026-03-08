@@ -16,7 +16,7 @@ const Index = () => {
           I'm <span className="text-muted-foreground">Bash</span>
         </h1>
 
-        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl">By day, I am a super star Product Manager. 
+        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl">By day, I am a super star Product Manager. 
 By nature, I'm still a person figuring things out.
 
         </p>
@@ -59,9 +59,7 @@ By nature, I'm still a person figuring things out.
         </div>
 
         <div className="border-t border-border pt-8">
-          <p className="text-muted-foreground text-sm italic">Inspired by James Clear’s 1% rule, I’ve made small improvement a daily ritual. 
-Are you building yours?
-          </p>
+          <p className="text-muted-foreground text-sm italic whitespace-pre-line">{"Inspired by James Clear's 1% rule, I've made small improvement a daily ritual.\nAre you building yours?"}</p>
         </div>
       </div>
     </div>);
