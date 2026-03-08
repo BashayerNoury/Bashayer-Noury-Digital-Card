@@ -40,7 +40,7 @@ const Index = () => {
               HEY THERE!
             </p>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
-              I'm <span className="px-3 py-1 rounded-xl bg-primary/15 text-primary dark:text-muted-foreground/80 dark:bg-muted/40">Bash.</span>
+              I'm <span className="text-muted-foreground/80">Bash.</span>
             </h1>
           </div>
         </div>
