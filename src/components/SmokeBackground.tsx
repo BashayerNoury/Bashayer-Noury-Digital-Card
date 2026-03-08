@@ -53,7 +53,7 @@ const SmokeBackground = () => {
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
       time += 0.008;
-      const color = getSmokColor();
+      const color = getSmokeColor();
 
       for (const t of tendrils) {
         ctx.save();
