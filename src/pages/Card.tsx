@@ -43,14 +43,13 @@ END:VCARD`;
           <p className="text-muted-foreground text-sm tracking-wide">Product Manager</p>
         </div>
 
-        <div className="p-6 bg-white rounded-2xl shadow-lg">
+        <div className="p-6 bg-white rounded-2xl shadow-lg animate-scale-in transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '2.8s' : '0.3s', animationFillMode: 'both' }}>
           <QRCodeSVG
             value={siteUrl}
             size={220}
             level="H"
             bgColor="#ffffff"
             fgColor="#000000" />
-          
         </div>
 
         <p className="text-muted-foreground text-sm">
