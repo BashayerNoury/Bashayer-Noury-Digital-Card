@@ -20,6 +20,13 @@ const SmokeBackground = () => {
     resize();
     window.addEventListener("resize", resize);
 
+    const getSmokeColor = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      return isDark
+        ? { r: 255, g: 255, b: 255 }
+        : { r: 100, g: 20, b: 40 };
+    };
+
     // Yin-yang flowing tendrils — orbit around center in opposing S-curves
     const tendrils: {
       angleOffset: number; radiusBase: number; speed: number;
