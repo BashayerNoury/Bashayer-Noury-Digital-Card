@@ -40,9 +40,8 @@ By nature, I'm still a person figuring things out.
             Email me
           </a>
           <a
-
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors" href="tel:0096597304442">p
-WhatsApp
+            href="tel:+96597304442"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors">
             <Phone size={18} />
             Call me
           </a>
