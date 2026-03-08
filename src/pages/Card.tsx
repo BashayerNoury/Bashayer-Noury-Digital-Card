@@ -21,7 +21,7 @@ const CopyLinkBox = ({ url }: { url: string }) => {
         className="px-4 py-3 border-l border-border hover:bg-muted transition-colors"
         aria-label="Copy link"
       >
-        {copied ? <Check size={18} className="text-green-500" /> : <Copy size={18} className="text-muted-foreground" />}
+        {copied ? <Check size={18} className="text-primary" /> : <Copy size={18} className="text-muted-foreground" />}
       </button>
     </div>
   );
