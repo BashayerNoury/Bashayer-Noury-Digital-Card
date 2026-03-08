@@ -97,8 +97,6 @@ END:VCARD`;
           </div>
         </div>
 
-        {/* URL below QR */}
-        <p className="text-foreground font-medium text-base -mt-4">bybash.lovable.app</p>
 
         {/* URL display */}
         <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
