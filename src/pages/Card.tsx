@@ -123,15 +123,22 @@ END:VCARD`;
               {copied ? "Copied!" : "bybash.lovable.app"}
             </span>
             <button
-              onClick={handleShare}
+              onClick={handleCopy}
               className={`flex items-center justify-center w-10 h-10 rounded-full mr-1 transition-all ${
                 copied
                   ? "bg-accent-foreground/20 text-accent-foreground"
-                  : "bg-foreground text-background hover:opacity-90"
+                  : "bg-foreground/20 text-foreground hover:opacity-90"
               }`}
+              aria-label="Copy"
+            >
+              {copied ? <Check size={16} /> : <Copy size={16} />}
+            </button>
+            <button
+              onClick={handleShare}
+              className="flex items-center justify-center w-10 h-10 rounded-full mr-1 transition-all bg-foreground text-background hover:opacity-90"
               aria-label="Share"
             >
-              {copied ? <Check size={16} /> : <Send size={16} />}
+              <Send size={16} />
             </button>
           </div>
           <button
