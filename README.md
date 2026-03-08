@@ -1,4 +1,4 @@
-# byBash — Personal Portfolio
+# By Bash – Bashayer Noury Digital Card
 
 A minimal personal portfolio and digital business card for **Bashayer Noury**, Product Manager based in Kuwait 🇰🇼.
 

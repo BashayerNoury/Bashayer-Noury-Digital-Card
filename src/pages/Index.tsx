@@ -6,8 +6,7 @@ import { getDailyQuote } from "@/data/quotes";
 import { Link } from "react-router-dom";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
-import WelcomeSplash, { useIsFirstVisit } from "@/components/WelcomeSplash";
-import PageSkeleton from "@/components/PageSkeleton";
+import SplashScreen from "@/components/SplashScreen";
 import signatureDark from "@/assets/signature-dark.png";
 import signatureLight from "@/assets/signature-light.png";
 import profileImg from "@/assets/profile.jpeg";
@@ -15,36 +14,28 @@ import profileImg from "@/assets/profile.jpeg";
 const skills = ["Product Management", "AI", "MVP / MLP", "GTM"];
 
 const Index = () => {
-  const isFirstVisit = useIsFirstVisit();
-  const [showWelcome, setShowWelcome] = useState(isFirstVisit);
-  const [pageReady, setPageReady] = useState(false);
+  const [showSplash, setShowSplash] = useState(() => {
+    if (sessionStorage.getItem("splashShown")) return false;
+    sessionStorage.setItem("splashShown", "true");
+    return true;
+  });
   const dailyQuote = useMemo(() => getDailyQuote(), []);
 
-  const handleWelcomeComplete = useCallback(() => {
-    setShowWelcome(false);
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
   }, []);
-
-  // Mark page as ready after a brief moment (simulates load)
-  useState(() => {
-    const t = setTimeout(() => setPageReady(true), 100);
-    return () => clearTimeout(t);
-  });
-
-  const showContent = !showWelcome && pageReady;
-  const animDelay = isFirstVisit ? 0.3 : 0.2;
 
   return (
     <div className="h-screen overflow-hidden bg-background flex items-center justify-center px-4 sm:px-6 py-4 relative">
-      {showWelcome && <WelcomeSplash onComplete={handleWelcomeComplete} />}
-      {!showWelcome && !pageReady && <PageSkeleton variant="home" loading={!pageReady} />}
+      {showSplash && <SplashScreen variant="home" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
-      <motion.div
-        className="max-w-2xl w-full relative z-10"
-        initial={{ opacity: 0, y: 8 }}
-        animate={showContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-        transition={{ duration: 0.6, delay: animDelay, ease: "easeOut" }}
-      >
+        <motion.div
+          className="max-w-2xl w-full relative z-10"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
+        >
         <div className="flex items-center gap-4 mb-2 sm:mb-4">
           <div className="relative flex-shrink-0">
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
@@ -59,7 +50,7 @@ const Index = () => {
               HEY THERE!
             </p>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
-              I'm <SlotText text="Bash." className="text-muted-foreground/80" startDelay={showContent ? 400 : 99999} />
+              I'm <SlotText text="Bash." className="text-muted-foreground/80" startDelay={showSplash ? 2800 : 400} />
             </h1>
           </div>
         </div>
@@ -113,8 +104,8 @@ const Index = () => {
         <motion.div
           className="border-t border-border pt-4 sm:pt-6 flex items-center justify-between gap-3"
           initial={{ opacity: 0, y: 8 }}
-          animate={showContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-          transition={{ duration: 0.6, delay: animDelay + 0.2, ease: "easeOut" }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
         >
           <div>
             <p className="text-muted-foreground text-xs sm:text-sm italic">"{dailyQuote.text}"</p>
@@ -123,7 +114,7 @@ const Index = () => {
           <img src={signatureDark} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 dark:hidden flex-shrink-0" />
           <img src={signatureLight} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 hidden dark:block flex-shrink-0" />
         </motion.div>
-      </motion.div>
+        </motion.div>
     </div>
   );
 };

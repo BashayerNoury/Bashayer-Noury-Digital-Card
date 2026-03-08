@@ -4,36 +4,31 @@ import { Home } from "lucide-react";
 import { motion } from "framer-motion";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
-import WelcomeSplash, { useIsFirstVisit } from "@/components/WelcomeSplash";
-import PageSkeleton from "@/components/PageSkeleton";
+import SplashScreen from "@/components/SplashScreen";
 
 const NotFound = () => {
-  const isFirstVisit = useIsFirstVisit();
-  const [showWelcome, setShowWelcome] = useState(isFirstVisit);
-  const [pageReady, setPageReady] = useState(false);
-
-  const handleWelcomeComplete = useCallback(() => {
-    setShowWelcome(false);
-  }, []);
-
-  useState(() => {
-    const t = setTimeout(() => setPageReady(true), 100);
-    return () => clearTimeout(t);
+  
+  const [showSplash, setShowSplash] = useState(() => {
+    if (sessionStorage.getItem("splashShown")) return false;
+    sessionStorage.setItem("splashShown", "true");
+    return true;
   });
 
-  const showContent = !showWelcome && pageReady;
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
+  }, []);
+
 
   return (
     <div className="h-screen overflow-hidden bg-background flex items-center justify-center px-4 sm:px-6 py-4 relative">
-      {showWelcome && <WelcomeSplash onComplete={handleWelcomeComplete} />}
-      {!showWelcome && !pageReady && <PageSkeleton variant="notfound" loading={!pageReady} />}
+      {showSplash && <SplashScreen variant="notfound" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
       <motion.div
         className="max-w-2xl w-full relative z-10 text-center"
         initial={{ opacity: 0, y: 8 }}
-        animate={showContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
       >
         <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground mb-2 sm:mb-4">
           OOPS!
