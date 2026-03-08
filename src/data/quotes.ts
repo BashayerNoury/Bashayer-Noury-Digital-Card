@@ -26,6 +26,7 @@ export const quotes: Quote[] = [
   { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" },
   { text: "The people who are crazy enough to think they can change the world are the ones who do.", author: "Steve Jobs" },
   { text: "Design is not just what it looks like and feels like. Design is how it works.", author: "Steve Jobs" },
+  { text: "What's important is that you have a faith in people, that they're basically good and smart, and if you give them tools, they'll do wonderful things with them.", author: "Steve Jobs" },
 
   // W. Timothy Gallwey (The Inner Game of Tennis)
   { text: "The opponent within one's own head is more formidable than the one the other side of the net.", author: "W. Timothy Gallwey" },
