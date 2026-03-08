@@ -41,34 +41,38 @@ const Index = () => {
           )}
         </div>
 
-        <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-10">
+        <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-10">
           <a
             href="https://wa.me/96597304442"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-primary/70 text-primary-foreground text-sm sm:text-base font-medium hover:opacity-90 hover:border-primary transition-opacity bg-primary">
-            <MessageCircle size={16} className="sm:w-[18px] sm:h-[18px]" />
-            WhatsApp
+            className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-primary/70 bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle size={20} className="sm:w-[22px] sm:h-[22px]" />
           </a>
           <a
             href="https://www.linkedin.com/in/bashayernoury/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-foreground/40 text-foreground text-sm sm:text-base font-medium hover:bg-secondary hover:border-foreground/60 transition-colors">
-            <Linkedin size={16} className="sm:w-[18px] sm:h-[18px]" />
-            LinkedIn
+            className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-foreground/40 text-foreground hover:bg-secondary hover:border-foreground/60 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={20} className="sm:w-[22px] sm:h-[22px]" />
           </a>
           <a
             href="mailto:bashayernoury@gmail.com"
-            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-foreground/40 text-foreground text-sm sm:text-base font-medium hover:bg-secondary hover:border-foreground/60 transition-colors">
-            <Mail size={16} className="sm:w-[18px] sm:h-[18px]" />
-            Email me
+            className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-foreground/40 text-foreground hover:bg-secondary hover:border-foreground/60 transition-colors"
+            aria-label="Email"
+          >
+            <Mail size={20} className="sm:w-[22px] sm:h-[22px]" />
           </a>
           <Link
             to="/card"
-            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border-2 border-foreground/40 text-foreground text-sm sm:text-base font-medium hover:bg-secondary hover:border-foreground/60 transition-colors">
-            <QrCode size={16} className="sm:w-[18px] sm:h-[18px]" />
-            My Card
+            className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-foreground/40 text-foreground hover:bg-secondary hover:border-foreground/60 transition-colors"
+            aria-label="My Card"
+          >
+            <QrCode size={20} className="sm:w-[22px] sm:h-[22px]" />
           </Link>
         </div>
 
