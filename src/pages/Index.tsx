@@ -24,11 +24,14 @@ const Index = () => {
       <SmokeBackground />
       <div className="max-w-2xl w-full relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
         <div className="flex items-center gap-4 mb-2 sm:mb-4">
-          <img
-            src={profileImg}
-            alt="Bashayer Noury"
-            className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-foreground/20 shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.3)]"
-          />
+          <div className="relative">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
+            <img
+              src={profileImg}
+              alt="Bashayer Noury"
+              className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-foreground/20 shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
+            />
+          </div>
           <div>
             <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground mb-1">
               HEY THERE!
