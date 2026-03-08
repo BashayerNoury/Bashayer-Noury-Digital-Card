@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Mail, MessageCircle, Linkedin, QrCode } from "lucide-react";
+import { Mail, Linkedin, QrCode } from "lucide-react";
 import { Link } from "react-router-dom";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
