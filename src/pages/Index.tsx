@@ -39,9 +39,6 @@ const Index = () => {
           </div>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-bold mb-2 sm:mb-4 text-foreground">
-          I'm <span className="text-muted-foreground/80">Bash.</span>
-        </h1>
 
         <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3 sm:mb-6 max-w-xl">{"Bashayer Noury is a Product Manager based in 🇰🇼"}</p>
 
