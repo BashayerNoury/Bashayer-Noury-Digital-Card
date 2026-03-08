@@ -62,6 +62,16 @@ END:VCARD`;
           Scan to visit my portfolio
         </p>
 
+        {/* Divider */}
+        <div className="flex items-center gap-3 w-full max-w-xs">
+          <div className="flex-1 h-px bg-border" />
+          <span className="text-xs text-muted-foreground uppercase tracking-wider">or copy the link</span>
+          <div className="flex-1 h-px bg-border" />
+        </div>
+
+        {/* Copy link box */}
+        <CopyLinkBox url={siteUrl} />
+
         <div className="flex flex-col gap-3 w-full max-w-xs">
           <button
             onClick={handleSaveContact}
