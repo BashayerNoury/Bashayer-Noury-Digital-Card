@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const SplashScreen = ({
@@ -13,7 +13,7 @@ const SplashScreen = ({
     const timer = setTimeout(() => {
       setPhase("exit");
       setTimeout(onComplete, 500);
-    }, 1200);
+    }, 1000);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -26,14 +26,14 @@ const SplashScreen = ({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <motion.span
-            className="text-5xl sm:text-7xl font-bold text-primary tracking-tight"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+          <motion.p
+            className="text-lg font-medium text-muted-foreground"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            Bash.
-          </motion.span>
+            Welcome ✨
+          </motion.p>
         </motion.div>
       )}
     </AnimatePresence>

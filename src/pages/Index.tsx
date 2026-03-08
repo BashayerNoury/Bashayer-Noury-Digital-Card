@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
-import SlotText from "@/components/SlotText";
 import signatureDark from "@/assets/signature-dark.png";
 import signatureLight from "@/assets/signature-light.png";
 import profileImg from "@/assets/profile.jpeg";
@@ -41,12 +40,12 @@ const Index = () => {
               HEY THERE!
             </p>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
-              I'm {showSplash ? <span className="text-muted-foreground/80">Bash.</span> : <SlotText />}
+              I'm <span className="text-muted-foreground/80">Bash.</span>
             </h1>
           </div>
         </div>
 
-        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3 sm:mb-6 max-w-xl">Bashayer Noury is a Product Manager based in 🇰🇼{"\n"}Let's Connect!</p>
+        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3 sm:mb-6 max-w-xl">Bashayer Noury is a Product Manager based in 🇰🇼</p>
 
         <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-8">
           {skills.map((skill) => <span
