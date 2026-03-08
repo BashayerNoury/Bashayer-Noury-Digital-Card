@@ -68,7 +68,7 @@ END:VCARD`;
           <div className="relative bg-neutral-900 rounded-2xl p-6 pt-10 flex flex-col items-center gap-4 shadow-xl">
             <QR
               color="#ffffff"
-              backgroundColor="transparent"
+              backgroundColor="#171717"
               rounding={100}
               errorCorrectionLevel="H"
               style={{ width: 200, height: 200 }}
