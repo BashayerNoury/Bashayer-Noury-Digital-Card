@@ -16,11 +16,11 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-6 relative">
+    <div className="h-screen overflow-hidden bg-background flex items-center justify-center px-6 relative">
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
-      <div className="max-w-2xl w-full py-20 relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.5s' : '0s', animationFillMode: 'both' }}>
+      <div className="max-w-2xl w-full relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.5s' : '0s', animationFillMode: 'both' }}>
         <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
           HEY THERE!
         </p>
