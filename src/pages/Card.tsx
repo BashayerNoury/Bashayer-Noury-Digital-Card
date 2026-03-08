@@ -46,14 +46,15 @@ END:VCARD`;
         <div className="relative animate-scale-in" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '2.8s' : '0.3s', animationFillMode: 'both' }}>
           <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-muted-foreground/30 via-foreground/20 to-muted-foreground/30 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
           <div className="relative p-6 bg-white rounded-2xl shadow-lg transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]">
-            <QRCodeRounded
-              value={siteUrl}
-              style={{ width: 220, height: 220 }}
+            <QR
               color="#000000"
               backgroundColor="#ffffff"
               rounding={100}
               errorCorrectionLevel="H"
-            />
+              style={{ width: 220, height: 220 }}
+            >
+              {siteUrl}
+            </QR>
           </div>
         </div>
 
