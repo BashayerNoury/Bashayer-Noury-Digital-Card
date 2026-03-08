@@ -6,6 +6,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 import signatureDark from "@/assets/signature-dark.png";
 import signatureLight from "@/assets/signature-light.png";
+import profileImg from "@/assets/profile.jpeg";
 
 const skills = ["Product Management", "AI", "MVP / MLP", "GTM"];
 
@@ -22,13 +23,22 @@ const Index = () => {
       <ThemeToggle />
       <SmokeBackground />
       <div className="max-w-2xl w-full relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
-        <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground mb-2 sm:mb-4">
-          HEY THERE!
-        </p>
+        <div className="flex items-center gap-4 mb-2 sm:mb-4">
+          <img
+            src={profileImg}
+            alt="Bashayer Noury"
+            className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-foreground/20 shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.3)]"
+          />
+          <div>
+            <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground mb-1">
+              HEY THERE!
+            </p>
+            <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
+              I'm <span className="text-muted-foreground/80">Bash.</span>
+            </h1>
+          </div>
+        </div>
 
-        <h1 className="text-3xl sm:text-5xl font-bold mb-2 sm:mb-4 text-foreground">
-          I'm <span className="text-muted-foreground/80">Bash.</span>
-        </h1>
 
         <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3 sm:mb-6 max-w-xl">{"Bashayer Noury is a Product Manager based in 🇰🇼"}</p>
 

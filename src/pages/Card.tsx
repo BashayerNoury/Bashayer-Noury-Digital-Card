@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { QrcodeSVG } from "react-qrcode-pretty";
 import { Download, Send, Check } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -6,12 +6,8 @@ import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
 
 const Card = () => {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash] = useState(false);
   const [copied, setCopied] = useState(false);
-
-  const handleSplashComplete = useCallback(() => {
-    setShowSplash(false);
-  }, []);
 
   const siteUrl = "https://bybash.lovable.app";
 
@@ -62,7 +58,7 @@ END:VCARD`;
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
       <ThemeToggle />
-      {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
+      
 
       <div className="flex flex-col items-center gap-8 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '1.5s' : '0s', animationFillMode: 'both' }}>
 
