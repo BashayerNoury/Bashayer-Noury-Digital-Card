@@ -6,7 +6,7 @@ import SplashScreen from "@/components/SplashScreen";
 import signatureDark from "@/assets/signature-dark.png";
 import signatureLight from "@/assets/signature-light.png";
 
-const skills = ["Product Management", "Vibe Coding", "MVP", "MLP", "GTM"];
+const skills = ["Product Management", "AI", "MVP", "MLP", "GTM"];
 
 const Index = () => {
   const [showSplash, setShowSplash] = useState(true);
