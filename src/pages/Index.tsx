@@ -13,6 +13,7 @@ const skills = ["Product Management", "AI", "MVP / MLP", "GTM"];
 
 const Index = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const dailyQuote = useMemo(() => getDailyQuote(), []);
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
