@@ -1,5 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { Mail, Linkedin, QrCode } from "lucide-react";
+import { getDailyQuote } from "@/data/quotes";
 import { Link } from "react-router-dom";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
