@@ -16,10 +16,7 @@ const Index = () => {
           I'm <span className="text-muted-foreground">Bash</span>
         </h1>
 
-        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl">By day, I am a super star Product Manager. 
-By nature, I'm still a person figuring things out.
-
-        </p>
+        <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-xl whitespace-pre-line">{"By day, I am a super star Product Manager.\nBy nature, I'm still a person figuring things out."}</p>
 
         <div className="flex flex-wrap gap-3 mb-10">
           {skills.map((skill) => <span
