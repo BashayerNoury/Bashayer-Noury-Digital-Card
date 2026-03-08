@@ -92,7 +92,10 @@ const Index = () => {
         </div>
 
         <div className="border-t border-border pt-4 sm:pt-6 flex items-center justify-between gap-3">
-          <p className="text-muted-foreground text-xs sm:text-sm italic whitespace-pre-line">{"Inspired by James Clear's 1% rule, I've made small improvement a daily ritual.\n"}</p>
+          <div>
+            <p className="text-muted-foreground text-xs sm:text-sm italic">"{dailyQuote.text}"</p>
+            <p className="text-muted-foreground/60 text-[10px] sm:text-xs mt-1">— {dailyQuote.author}</p>
+          </div>
           <img src={signatureDark} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 dark:hidden flex-shrink-0" />
           <img src={signatureLight} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 hidden dark:block flex-shrink-0" />
         </div>
