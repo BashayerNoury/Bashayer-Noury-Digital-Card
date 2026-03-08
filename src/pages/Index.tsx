@@ -91,14 +91,19 @@ const Index = () => {
           </Link>
         </div>
 
-        <div className="border-t border-border pt-4 sm:pt-6 flex items-center justify-between gap-3">
+        <motion.div
+          className="border-t border-border pt-4 sm:pt-6 flex items-center justify-between gap-3"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
+        >
           <div>
             <p className="text-muted-foreground text-xs sm:text-sm italic">"{dailyQuote.text}"</p>
             <p className="text-muted-foreground/60 text-[10px] sm:text-xs mt-1">— {dailyQuote.author}</p>
           </div>
           <img src={signatureDark} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 dark:hidden flex-shrink-0" />
           <img src={signatureLight} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 hidden dark:block flex-shrink-0" />
-        </div>
+        </motion.div>
       </div>
     </div>
   );
