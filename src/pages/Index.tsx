@@ -10,6 +10,17 @@ const skills = ["Product Management", "Vibe Coding", "MVP", "MLP", "GTM"];
 
 const Index = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const [isDark, setIsDark] = useState(() =>
+    document.documentElement.classList.contains("dark")
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
