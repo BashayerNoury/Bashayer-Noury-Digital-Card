@@ -120,11 +120,7 @@ END:VCARD`;
             <div className="flex items-center gap-1.5">
               <button
                 onClick={handleCopy}
-                className={`flex items-center justify-center w-11 h-11 rounded-full transition-all ${
-                  copied
-                    ? "bg-primary/20 text-primary"
-                    : "bg-foreground/10 text-foreground hover:bg-foreground/15"
-                }`}
+                className="flex items-center justify-center w-11 h-11 rounded-full transition-all bg-foreground/10 text-foreground hover:bg-foreground/15"
                 aria-label="Copy"
               >
                 {copied ? <Check size={16} /> : <Copy size={16} />}
