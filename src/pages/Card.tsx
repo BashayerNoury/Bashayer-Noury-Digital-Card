@@ -68,7 +68,7 @@ END:VCARD`;
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
+    <div className="min-h-screen overflow-hidden bg-background flex flex-col items-center justify-center px-6 relative">
       {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />

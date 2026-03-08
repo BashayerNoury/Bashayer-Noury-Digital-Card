@@ -124,6 +124,12 @@ const Index = () => {
           <img src={signatureLight} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 hidden dark:block flex-shrink-0" />
         </motion.div>
         </motion.div>
+        <p className="absolute bottom-3 text-muted-foreground/40 text-[10px] sm:text-xs">
+          Made with ♥ In{" "}
+          <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-muted-foreground/60 transition-colors">
+            Lovable
+          </a>
+        </p>
     </div>
   );
 };
