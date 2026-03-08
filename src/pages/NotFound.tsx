@@ -1,11 +1,18 @@
+import { useState, useCallback } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Home } from "lucide-react";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
+import SplashScreen from "@/components/SplashScreen";
 
 const NotFound = () => {
   const location = useLocation();
+  const [showSplash, setShowSplash] = useState(true);
+
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
+  }, []);
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
@@ -13,9 +20,10 @@ const NotFound = () => {
 
   return (
     <div className="h-screen overflow-hidden bg-background flex items-center justify-center px-4 sm:px-6 py-4 relative">
+      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
-      <div className="max-w-2xl w-full relative z-10 animate-fade-in text-center" style={{ animationDuration: '0.8s' }}>
+      <div className="max-w-2xl w-full relative z-10 animate-fade-in text-center" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.8s' : '0s', animationFillMode: 'both' }}>
         <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground mb-2 sm:mb-4">
           OOPS!
         </p>
