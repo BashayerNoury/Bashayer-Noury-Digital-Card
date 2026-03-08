@@ -79,14 +79,15 @@ END:VCARD`;
         <div className="relative animate-scale-in" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '1.8s' : '0.3s', animationFillMode: 'both' }}>
           <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-muted-foreground/20 via-muted-foreground/10 to-muted-foreground/20 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
           <div className="relative bg-card rounded-2xl p-6 pt-10 flex flex-col items-center gap-4 shadow-xl border border-border">
-            <QrcodeSVG
-              value={siteUrl}
-              variant={{ eyes: "gravity", body: "dots" }}
-              color="hsl(var(--foreground))"
-              bgColor="transparent"
-              padding={0}
-              style={{ width: 200, height: 200 }}
-            />
+            <div style={{ width: 200, height: 200 }}>
+              <QrcodeSVG
+                value={siteUrl}
+                variant={{ eyes: "gravity", body: "dots" }}
+                color="hsl(var(--foreground))"
+                bgColor="transparent"
+                padding={0}
+              />
+            </div>
             <h1 className="text-lg font-bold text-foreground tracking-wide uppercase">
               Bashayer Noury
             </h1>
