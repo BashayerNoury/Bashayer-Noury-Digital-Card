@@ -1,18 +1,16 @@
 import { useState, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { Download } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 
 const Card = () => {
   const [showSplash, setShowSplash] = useState(true);
-  const [qrRevealed, setQrRevealed] = useState(false);
+  
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
-    // Trigger QR reveal sequence after splash
-    setTimeout(() => setQrRevealed(true), 600);
   }, []);
 
   const siteUrl = "https://bybash.lovable.app";
@@ -100,21 +98,16 @@ END:VCARD`;
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.04, transition: { duration: 0.3 } }}
           >
-            {/* Scan line effect */}
-            <AnimatePresence>
-              {qrRevealed && (
-                <motion.div
-                  className="absolute inset-x-0 h-1 z-20"
-                  style={{
-                    background: "linear-gradient(180deg, transparent, rgba(0,200,255,0.6), transparent)",
-                    boxShadow: "0 0 20px rgba(0,200,255,0.4), 0 0 60px rgba(0,200,255,0.2)",
-                  }}
-                  initial={{ top: 0, opacity: 1 }}
-                  animate={{ top: "100%", opacity: [1, 1, 0] }}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                />
-              )}
-            </AnimatePresence>
+            {/* Continuous scan line */}
+            <motion.div
+              className="absolute inset-x-0 h-1 z-20"
+              style={{
+                background: "linear-gradient(180deg, transparent, rgba(0,200,255,0.6), transparent)",
+                boxShadow: "0 0 20px rgba(0,200,255,0.4), 0 0 60px rgba(0,200,255,0.2)",
+              }}
+              animate={{ top: ["0%", "100%", "0%"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
 
             {/* Corner accents */}
             {[
