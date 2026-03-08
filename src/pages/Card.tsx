@@ -113,28 +113,38 @@ END:VCARD`;
         {/* Actions */}
         <div className="flex flex-col items-center gap-3 w-full max-w-xs mt-2">
           <div className="flex items-center gap-3 w-full">
-            {/* Share button */}
-            <button
-              onClick={handleShare}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-foreground text-background font-medium hover:opacity-90 transition-all text-sm"
-              aria-label="Share"
-            >
-              <Send size={16} />
-              Share
-            </button>
-            {/* Copy link button */}
-            <button
-              onClick={handleCopyLink}
-              className={`flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-medium transition-all text-sm ${
-                copied
-                  ? "bg-accent text-accent-foreground"
-                  : "bg-foreground/10 border border-foreground/20 text-foreground hover:bg-foreground/20"
+            {/* Share pill */}
+            <div className="flex items-center flex-1 rounded-full bg-foreground">
+              <button
+                onClick={handleShare}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background ml-1"
+                aria-label="Share"
+              >
+                <Send size={16} />
+              </button>
+              <span className="flex-1 text-center py-3 text-sm font-medium text-background pr-3">
+                Share
+              </span>
+            </div>
+            {/* Copy Link pill */}
+            <div
+              className={`flex items-center flex-1 rounded-full transition-all duration-300 ${
+                copied ? "bg-accent" : "bg-foreground/10 border border-foreground/20"
               }`}
-              aria-label="Copy link"
             >
-              {copied ? <Check size={16} /> : <Link size={16} />}
-              {copied ? "Copied!" : "Copy Link"}
-            </button>
+              <button
+                onClick={handleCopyLink}
+                className={`flex items-center justify-center w-10 h-10 rounded-full ml-1 transition-all ${
+                  copied ? "bg-accent-foreground/20 text-accent-foreground" : "bg-foreground/20 text-foreground"
+                }`}
+                aria-label="Copy link"
+              >
+                {copied ? <Check size={16} /> : <Link size={16} />}
+              </button>
+              <span className={`flex-1 text-center py-3 text-sm font-medium pr-3 ${copied ? "text-accent-foreground" : "text-foreground"}`}>
+                {copied ? "Copied!" : "Copy Link"}
+              </span>
+            </div>
           </div>
           <button
             onClick={handleSaveContact}
