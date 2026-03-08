@@ -4,6 +4,7 @@ import { Download, Send, Check, Link } from "lucide-react";
 import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import SmokeBackground from "@/components/SmokeBackground";
+import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
 import profileImg from "@/assets/profile.jpeg";
 
