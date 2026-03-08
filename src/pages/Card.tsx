@@ -103,7 +103,7 @@ END:VCARD`;
             onClick={handleShare}
             className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 uppercase tracking-wider text-sm ${
               copied
-                ? "bg-green-600 text-white scale-95"
+                ? "bg-accent text-accent-foreground scale-95"
                 : "bg-primary text-primary-foreground hover:opacity-90"
             }`}
           >
