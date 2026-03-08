@@ -19,7 +19,7 @@ const Index = () => {
       <ThemeToggle />
       <SmokeBackground />
       <div className="max-w-2xl w-full py-20 relative z-10 animate-fade-in" style={{ animationDuration: '0.8s', animationDelay: showSplash ? '2.5s' : '0s', animationFillMode: 'both' }}>
-        <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">
+        <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
           Hey there
         </p>
 
