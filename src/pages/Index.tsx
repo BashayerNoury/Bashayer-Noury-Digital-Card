@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
+import SlotText from "@/components/SlotText";
 import signatureDark from "@/assets/signature-dark.png";
 import signatureLight from "@/assets/signature-light.png";
 import profileImg from "@/assets/profile.jpeg";
