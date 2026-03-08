@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { QRCodeSVG } from "qrcode.react";
+import QRCodeRounded from "react-qr-rounded";
 import { Download } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
