@@ -40,22 +40,7 @@ END:VCARD`;
     URL.revokeObjectURL(url);
   };
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(siteUrl);
-    } catch {
-      const textArea = document.createElement("textarea");
-      textArea.value = siteUrl;
-      textArea.style.position = "fixed";
-      textArea.style.opacity = "0";
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-    }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const handleCopy = () => copyToClipboard();
 
   const copyToClipboard = async () => {
     try {
