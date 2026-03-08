@@ -40,8 +40,8 @@ END:VCARD`;
             size={220}
             level="H"
             bgColor="#ffffff"
-            fgColor="#000000"
-          />
+            fgColor="#000000" />
+          
         </div>
 
         <p className="text-muted-foreground text-sm">
@@ -51,21 +51,21 @@ END:VCARD`;
         <div className="flex flex-col gap-3 w-full max-w-xs">
           <button
             onClick={handleSaveContact}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/70 text-primary-foreground font-medium hover:opacity-90 transition-opacity bg-primary"
-          >
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/70 text-primary-foreground font-medium hover:opacity-90 transition-opacity bg-primary">
+            
             <Download size={18} />
             Save Contact
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm"
-          >
-            ← Back to Portfolio
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-foreground/40 text-foreground font-medium hover:bg-secondary hover:border-foreground/60 transition-colors text-sm">← Go to Portfolio
+
+
           </a>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Card;
