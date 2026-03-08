@@ -1,8 +1,10 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Mail, MessageCircle, Linkedin } from "lucide-react";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
+import signatureDark from "@/assets/signature-dark.png";
+import signatureLight from "@/assets/signature-light.png";
 
 const skills = ["Product Management", "Vibe Coding", "MVP", "MLP", "GTM"];
 
