@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import profileImg from "@/assets/profile.jpeg";
 
 const SplashScreen = ({
   onComplete,
@@ -26,14 +27,19 @@ const SplashScreen = ({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <motion.p
-            className="text-xl sm:text-2xl font-medium text-muted-foreground tracking-[0.2em] uppercase"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            Hey there!
-          </motion.p>
+            <div className="w-24 h-24 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
+            <img
+              src={profileImg}
+              alt="Bashayer Noury"
+              className="relative w-24 h-24 rounded-full object-cover border-4 border-background shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
+            />
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
