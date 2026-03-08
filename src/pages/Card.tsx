@@ -40,7 +40,9 @@ END:VCARD`;
     URL.revokeObjectURL(url);
   };
 
-  const handleCopy = async () => {
+  const handleCopy = () => copyToClipboard();
+
+  const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(siteUrl);
     } catch {
@@ -62,20 +64,7 @@ END:VCARD`;
       await navigator.share({ title: "Bashayer Noury", url: siteUrl });
     } catch {
       // Share not supported or cancelled — copy as fallback
-      try {
-        await navigator.clipboard.writeText(siteUrl);
-      } catch {
-        const textArea = document.createElement("textarea");
-        textArea.value = siteUrl;
-        textArea.style.position = "fixed";
-        textArea.style.opacity = "0";
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
-      }
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      await copyToClipboard();
     }
   };
 
