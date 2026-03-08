@@ -6,7 +6,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 
 const NotFound = () => {
-  const location = useLocation();
+  
   const [showSplash, setShowSplash] = useState(() => {
     if (sessionStorage.getItem("splashShown")) return false;
     sessionStorage.setItem("splashShown", "true");
