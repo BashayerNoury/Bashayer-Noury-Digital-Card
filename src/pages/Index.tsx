@@ -14,7 +14,11 @@ import profileImg from "@/assets/profile.jpeg";
 const skills = ["Product Management", "AI", "MVP / MLP", "GTM"];
 
 const Index = () => {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(() => {
+    if (sessionStorage.getItem("splashShown")) return false;
+    sessionStorage.setItem("splashShown", "true");
+    return true;
+  });
   const dailyQuote = useMemo(() => getDailyQuote(), []);
 
   const handleSplashComplete = useCallback(() => {
