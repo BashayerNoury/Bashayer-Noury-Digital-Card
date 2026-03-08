@@ -101,10 +101,14 @@ END:VCARD`;
         <div className="flex flex-col gap-3 w-full max-w-xs mt-2">
           <button
             onClick={handleShare}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity uppercase tracking-wider text-sm"
+            className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 uppercase tracking-wider text-sm ${
+              copied
+                ? "bg-green-600 text-white scale-95"
+                : "bg-primary text-primary-foreground hover:opacity-90"
+            }`}
           >
-            Share Link
-            <Share2 size={16} />
+            {copied ? "Copied!" : "Share Link"}
+            {copied ? <Check size={16} /> : <Share2 size={16} />}
           </button>
           <button
             onClick={handleSaveContact}
