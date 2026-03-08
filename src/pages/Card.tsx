@@ -43,7 +43,9 @@ END:VCARD`;
           <p className="text-muted-foreground text-sm tracking-wide">Product Manager</p>
         </div>
 
-        <div className="p-6 bg-white rounded-2xl shadow-lg animate-scale-in transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '2.8s' : '0.3s', animationFillMode: 'both' }}>
+        <div className="relative animate-scale-in" style={{ animationDuration: '0.6s', animationDelay: showSplash ? '2.8s' : '0.3s', animationFillMode: 'both' }}>
+          <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-muted-foreground/30 via-foreground/20 to-muted-foreground/30 animate-[pulse_3s_ease-in-out_infinite] blur-md" />
+          <div className="relative p-6 bg-white rounded-2xl shadow-lg transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)]">
           <QRCodeSVG
             value={siteUrl}
             size={220}
