@@ -1,8 +1,31 @@
 import { useState, useCallback } from "react";
 import { QR } from "react-qr-rounded";
-import { Download } from "lucide-react";
+import { Download, Copy, Check } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
+
+const CopyLinkBox = ({ url }: { url: string }) => {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+  return (
+    <div className="flex items-center gap-0 w-full max-w-xs rounded-xl border border-border bg-muted/40 overflow-hidden">
+      <span className="flex-1 px-4 py-3 text-sm font-mono text-foreground truncate select-all">
+        {url.replace(/^https?:\/\//, "")}
+      </span>
+      <button
+        onClick={handleCopy}
+        className="px-4 py-3 border-l border-border hover:bg-muted transition-colors"
+        aria-label="Copy link"
+      >
+        {copied ? <Check size={18} className="text-primary" /> : <Copy size={18} className="text-muted-foreground" />}
+      </button>
+    </div>
+  );
+};
 
 const Card = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -61,6 +84,16 @@ END:VCARD`;
         <p className="text-muted-foreground text-sm">
           Scan to visit my portfolio
         </p>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 w-full max-w-xs">
+          <div className="flex-1 h-px bg-border" />
+          <span className="text-xs text-muted-foreground uppercase tracking-wider">or copy the link</span>
+          <div className="flex-1 h-px bg-border" />
+        </div>
+
+        {/* Copy link box */}
+        <CopyLinkBox url={siteUrl} />
 
         <div className="flex flex-col gap-3 w-full max-w-xs">
           <button
