@@ -117,7 +117,7 @@ const SmokeBackground = () => {
         { x: w * 0.5, y: h * 0.45, r: 350, o: 0.05 },
       ];
 
-      const color2 = getSmokColor();
+      const color2 = getSmokeColor();
       for (const g of glows) {
         const gx = g.x + Math.sin(time * 0.3) * 40;
         const gy = g.y + Math.cos(time * 0.25) * 30;
