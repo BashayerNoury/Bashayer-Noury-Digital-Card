@@ -1,6 +1,8 @@
+import { useState, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { Download } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import SplashScreen from "@/components/SplashScreen";
 
 const Card = () => {
   const siteUrl = "https://bybash.lovable.app";
