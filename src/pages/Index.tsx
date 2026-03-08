@@ -67,7 +67,8 @@ const Index = () => {
 
         <div className="border-t border-border pt-8 flex items-center justify-between">
           <p className="text-muted-foreground text-sm italic whitespace-pre-line">{"Inspired by James Clear's 1% rule, I've made small improvement a daily ritual.\nAre you building yours?"}</p>
-          <img src={isDark ? signatureLight : signatureDark} alt="BN Signature" className="h-16 w-auto opacity-60" />
+          <img src={signatureDark} alt="BN Signature" className="h-16 w-auto opacity-60 dark:hidden" />
+          <img src={signatureLight} alt="BN Signature" className="h-16 w-auto opacity-60 hidden dark:block" />
         </div>
       </div>
     </div>
