@@ -20,24 +20,25 @@ const SmokeBackground = () => {
     resize();
     window.addEventListener("resize", resize);
 
+    // More dramatic, concentrated tendrils like the reference
     const tendrils: {
       x: number; y: number; speed: number; amplitude: number;
       frequency: number; phase: number; thickness: number;
       opacity: number; curve: number; drift: number;
     }[] = [];
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 8; i++) {
       tendrils.push({
-        x: -200 + Math.random() * 200,
-        y: h * 0.3 + Math.random() * h * 0.4,
-        speed: 0.3 + Math.random() * 0.5,
-        amplitude: 80 + Math.random() * 120,
-        frequency: 0.002 + Math.random() * 0.003,
+        x: w * 0.2 + Math.random() * w * 0.3,
+        y: h * 0.1 + Math.random() * h * 0.8,
+        speed: 0.2 + Math.random() * 0.4,
+        amplitude: 120 + Math.random() * 200,
+        frequency: 0.002 + Math.random() * 0.004,
         phase: Math.random() * Math.PI * 2,
-        thickness: 60 + Math.random() * 140,
-        opacity: 0.06 + Math.random() * 0.12,
-        curve: 0.5 + Math.random() * 1.5,
-        drift: (Math.random() - 0.5) * 0.3,
+        thickness: 80 + Math.random() * 200,
+        opacity: 0.1 + Math.random() * 0.18,
+        curve: 0.8 + Math.random() * 2,
+        drift: (Math.random() - 0.5) * 0.5,
       });
     }
 
@@ -52,27 +53,26 @@ const SmokeBackground = () => {
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
-      time += 0.008;
+      time += 0.006;
       const color = getSmokeColor();
 
       for (const t of tendrils) {
         ctx.save();
         const points: { x: number; y: number }[] = [];
-        const steps = 80;
+        const steps = 100;
 
         for (let i = 0; i <= steps; i++) {
           const progress = i / steps;
-          const px = progress * (w + 400) - 200;
-          const wave1 = Math.sin(progress * Math.PI * t.curve + t.phase + time * t.speed) * t.amplitude;
-          const wave2 = Math.sin(progress * Math.PI * 2.5 + t.phase * 1.5 + time * t.speed * 0.7) * t.amplitude * 0.4;
-          const wave3 = Math.sin(progress * Math.PI * 4 + time * 0.3) * t.amplitude * 0.15;
-          const py = t.y + wave1 + wave2 + wave3 + Math.sin(time * 0.2) * 20 * t.drift;
-          points.push({ x: px, y: py });
+          // Vertical sweep - smoke flows from top to bottom through center
+          const px = t.x + Math.sin(progress * Math.PI * t.curve + t.phase + time * t.speed) * t.amplitude
+            + Math.sin(progress * Math.PI * 3 + time * 0.4) * t.amplitude * 0.3;
+          const py = progress * (h + 200) - 100;
+          points.push({ x: px + Math.sin(time * 0.15 + progress * 2) * 30 * t.drift, y: py });
         }
 
-        for (let layer = 0; layer < 3; layer++) {
-          const layerThickness = t.thickness * (1 - layer * 0.3);
-          const layerOpacity = t.opacity * (1 - layer * 0.25);
+        for (let layer = 0; layer < 4; layer++) {
+          const layerThickness = t.thickness * (1 - layer * 0.25);
+          const layerOpacity = t.opacity * (1 - layer * 0.2);
 
           ctx.beginPath();
           ctx.moveTo(points[0].x, points[0].y);
@@ -86,18 +86,19 @@ const SmokeBackground = () => {
           ctx.lineCap = "round";
           ctx.lineJoin = "round";
 
-          const gradient = ctx.createLinearGradient(0, 0, w, 0);
+          const gradient = ctx.createLinearGradient(0, 0, 0, h);
           gradient.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
-          gradient.addColorStop(0.15, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 0.5})`);
-          gradient.addColorStop(0.4, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity})`);
-          gradient.addColorStop(0.6, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 1.1})`);
-          gradient.addColorStop(0.85, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 0.5})`);
+          gradient.addColorStop(0.2, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 0.6})`);
+          gradient.addColorStop(0.45, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity})`);
+          gradient.addColorStop(0.55, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 1.2})`);
+          gradient.addColorStop(0.8, `rgba(${color.r}, ${color.g}, ${color.b}, ${layerOpacity * 0.6})`);
           gradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
 
           ctx.strokeStyle = gradient;
           ctx.stroke();
         }
 
+        // Thin bright core line
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
         for (let i = 1; i < points.length - 2; i++) {
@@ -105,25 +106,27 @@ const SmokeBackground = () => {
           const yc = (points[i].y + points[i + 1].y) / 2;
           ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
         }
-        ctx.lineWidth = 2 + Math.random() * 2;
-        ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${t.opacity * 0.3})`;
+        ctx.lineWidth = 1.5 + Math.random() * 1.5;
+        ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${t.opacity * 0.5})`;
         ctx.stroke();
         ctx.restore();
       }
 
+      // Concentrated central glow
       const glows = [
-        { x: w * 0.3, y: h * 0.4, r: 300, o: 0.08 },
-        { x: w * 0.7, y: h * 0.5, r: 250, o: 0.06 },
-        { x: w * 0.5, y: h * 0.45, r: 350, o: 0.05 },
+        { x: w * 0.4, y: h * 0.3, r: 400, o: 0.12 },
+        { x: w * 0.5, y: h * 0.5, r: 350, o: 0.1 },
+        { x: w * 0.35, y: h * 0.6, r: 300, o: 0.08 },
+        { x: w * 0.55, y: h * 0.35, r: 280, o: 0.07 },
       ];
 
-      const color2 = getSmokeColor();
       for (const g of glows) {
-        const gx = g.x + Math.sin(time * 0.3) * 40;
-        const gy = g.y + Math.cos(time * 0.25) * 30;
+        const gx = g.x + Math.sin(time * 0.25) * 50;
+        const gy = g.y + Math.cos(time * 0.2) * 40;
         const grad = ctx.createRadialGradient(gx, gy, 0, gx, gy, g.r);
-        grad.addColorStop(0, `rgba(${color2.r}, ${color2.g}, ${color2.b}, ${g.o})`);
-        grad.addColorStop(1, `rgba(${color2.r}, ${color2.g}, ${color2.b}, 0)`);
+        grad.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${g.o})`);
+        grad.addColorStop(0.5, `rgba(${color.r}, ${color.g}, ${color.b}, ${g.o * 0.4})`);
+        grad.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
         ctx.fillStyle = grad;
         ctx.fillRect(gx - g.r, gy - g.r, g.r * 2, g.r * 2);
       }
@@ -140,11 +143,15 @@ const SmokeBackground = () => {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ filter: "blur(30px)" }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{ filter: "blur(25px)" }}
+      />
+      {/* Dark overlay so text remains readable */}
+      <div className="fixed inset-0 pointer-events-none z-0 bg-background/40" />
+    </>
   );
 };
 
