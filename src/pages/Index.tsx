@@ -32,7 +32,7 @@ const Index = () => {
         <div className="flex flex-wrap gap-3 mb-10">
           {skills.map((skill) => <span
             key={skill}
-            className="px-4 py-2 rounded-full border border-border text-sm text-muted-foreground">
+            className="px-4 py-2 rounded-full border-2 border-foreground/30 text-sm text-foreground/70 font-medium backdrop-blur-sm">
               {skill}
             </span>
           )}
