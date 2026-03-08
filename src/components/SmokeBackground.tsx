@@ -143,7 +143,7 @@ const SmokeBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ filter: "blur(30px)" }}
+      style={{ filter: "blur(8px)" }}
     />
   );
 };
