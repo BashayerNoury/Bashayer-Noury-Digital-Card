@@ -114,7 +114,7 @@ const Index = () => {
           <img src={signatureDark} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 dark:hidden flex-shrink-0" />
           <img src={signatureLight} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 hidden dark:block flex-shrink-0" />
         </motion.div>
-      </div>
+        </motion.div>
     </div>
   );
 };
