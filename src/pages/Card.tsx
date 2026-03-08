@@ -69,6 +69,7 @@ END:VCARD`;
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 relative">
       {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
       <ThemeToggle />
+      <SmokeBackground />
 
       <motion.div
         className="flex flex-col items-center gap-8"
