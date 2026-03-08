@@ -5,6 +5,12 @@ import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 
 const Card = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
+  }, []);
+
   const siteUrl = "https://bybash.lovable.app";
 
   const handleSaveContact = () => {
