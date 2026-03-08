@@ -5,6 +5,7 @@ export interface Quote {
 
 export const quotes: Quote[] = [
   // James Clear
+  { text: "If you can get 1 percent better each day for one year, you'll end up thirty-seven times better by the time you're done. Conversely, if you get 1 percent worse each day for one year, you'll decline nearly down to zero.", author: "James Clear" },
   { text: "Every action you take is a vote for the type of person you wish to become.", author: "James Clear" },
   { text: "You do not rise to the level of your goals. You fall to the level of your systems.", author: "James Clear" },
   { text: "The task of breaking a bad habit is like uprooting a powerful oak within us.", author: "James Clear" },
