@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { Download } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import ThemeToggle from "@/components/ThemeToggle";
 import SplashScreen from "@/components/SplashScreen";
 
