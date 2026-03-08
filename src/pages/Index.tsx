@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import SlotText from "@/components/SlotText";
 import { Mail, Linkedin, QrCode } from "lucide-react";
 import { motion } from "framer-motion";
 import { getDailyQuote } from "@/data/quotes";
@@ -40,7 +41,7 @@ const Index = () => {
               HEY THERE!
             </p>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
-              I'm <span className="text-muted-foreground/80">Bash.</span>
+              I'm <SlotText text="Bash." className="text-muted-foreground/80" startDelay={showSplash ? 2800 : 400} />
             </h1>
           </div>
         </div>
