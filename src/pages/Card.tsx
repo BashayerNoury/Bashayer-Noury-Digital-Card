@@ -88,7 +88,7 @@ END:VCARD`;
             alt="Bashayer Noury"
             className="relative w-24 h-24 rounded-full object-cover ring-2 ring-foreground/10 shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
           />
-          <span className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background" />
+          <span className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-background animate-[pulse_2s_ease-in-out_infinite]" />
         </div>
 
         {/* Name & title */}
