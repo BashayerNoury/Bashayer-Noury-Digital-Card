@@ -1,9 +1,9 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useRef, useEffect, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef } from "react";
 import * as THREE from "three";
 import { Float, Environment } from "@react-three/drei";
 
-const Sphere = ({ distance, speed, offset, size, color }: { distance: number; speed: number; offset: number; size: number; color: string }) => {
+const Sphere = ({ radius, distance, speed, offset, size }: { radius: number; distance: number; speed: number; offset: number; size: number }) => {
   const ref = useRef<THREE.Mesh>(null!);
 
   useFrame((state) => {
@@ -17,7 +17,7 @@ const Sphere = ({ distance, speed, offset, size, color }: { distance: number; sp
     <mesh ref={ref}>
       <sphereGeometry args={[size, 32, 32]} />
       <meshPhysicalMaterial
-        color={color}
+        color="#1a1a1a"
         metalness={0.95}
         roughness={0.1}
         clearcoat={1}
@@ -28,36 +28,14 @@ const Sphere = ({ distance, speed, offset, size, color }: { distance: number; sp
   );
 };
 
-const MouseTracker = ({ groupRef }: { groupRef: React.RefObject<THREE.Group> }) => {
-  const { viewport } = useThree();
-  const mouse = useRef({ x: 0, y: 0 });
-  const smoothMouse = useRef({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  useFrame(() => {
-    smoothMouse.current.x += (mouse.current.x - smoothMouse.current.x) * 0.05;
-    smoothMouse.current.y += (mouse.current.y - smoothMouse.current.y) * 0.05;
-
-    if (groupRef.current) {
-      groupRef.current.rotation.y += (smoothMouse.current.x * 0.5 - groupRef.current.rotation.y) * 0.03;
-      groupRef.current.rotation.x += (smoothMouse.current.y * 0.3 - groupRef.current.rotation.x) * 0.03;
-    }
-  });
-
-  return null;
-};
-
-const SphereCluster = ({ isDark }: { isDark: boolean }) => {
+const SphereCluster = () => {
   const groupRef = useRef<THREE.Group>(null!);
-  const color = isDark ? "#1a1a1a" : "#c0c0c8";
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    groupRef.current.rotation.y = t * 0.08;
+    groupRef.current.rotation.x = Math.sin(t * 0.15) * 0.2;
+  });
 
   const spheres = [
     { distance: 0, speed: 0, offset: 0, size: 0.45 },
@@ -72,9 +50,8 @@ const SphereCluster = ({ isDark }: { isDark: boolean }) => {
   return (
     <Float speed={1.5} rotationIntensity={0} floatIntensity={0.5} floatingRange={[-0.1, 0.1]}>
       <group ref={groupRef}>
-        <MouseTracker groupRef={groupRef} />
         {spheres.map((s, i) => (
-          <Sphere key={i} {...s} color={color} />
+          <Sphere key={i} radius={0} {...s} />
         ))}
       </group>
     </Float>
@@ -82,30 +59,16 @@ const SphereCluster = ({ isDark }: { isDark: boolean }) => {
 };
 
 const FloatingCube = () => {
-  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains("dark"));
-
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsDark(document.documentElement.classList.contains("dark"));
-    });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] z-10 pointer-events-none opacity-70"
-      style={{ pointerEvents: "none" }}
-    >
-      <div style={{ pointerEvents: "auto", width: "100%", height: "100%" }}>
-        <Canvas camera={{ position: [0, 0, 4], fov: 35 }} dpr={[1, 2]}>
-          <ambientLight intensity={isDark ? 0.3 : 0.6} />
-          <directionalLight position={[5, 5, 5]} intensity={isDark ? 1 : 1.5} />
-          <directionalLight position={[-3, -3, 2]} intensity={0.4} />
-          <spotLight position={[0, 5, 3]} intensity={0.6} angle={0.5} penumbra={1} />
-          <Environment preset="city" />
-          <SphereCluster isDark={isDark} />
-        </Canvas>
-      </div>
+    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[400px] md:h-[400px] z-10 pointer-events-none opacity-70">
+      <Canvas camera={{ position: [0, 0, 4], fov: 35 }} dpr={[1, 2]}>
+        <ambientLight intensity={0.3} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <directionalLight position={[-3, -3, 2]} intensity={0.4} />
+        <spotLight position={[0, 5, 3]} intensity={0.6} angle={0.5} penumbra={1} />
+        <Environment preset="city" />
+        <SphereCluster />
+      </Canvas>
     </div>
   );
 };
