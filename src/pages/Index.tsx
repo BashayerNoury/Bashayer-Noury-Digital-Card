@@ -31,6 +31,7 @@ const Index = () => {
       {showSplash && <SplashScreen variant="home" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
+      <FloatingCube />
         <motion.div
           className="max-w-2xl w-full relative z-10"
           initial={{ opacity: 0, y: 8 }}
