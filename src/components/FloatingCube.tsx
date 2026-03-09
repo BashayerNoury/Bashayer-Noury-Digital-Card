@@ -68,6 +68,8 @@ const AbstractYinYang = () => {
   const blocks = useMemo(() => {
     const gap = 0.38;
     const R = 3.2;
+    const halfR = R / 2;
+    const eyeR = R * 0.25;
     const result: { pos: [number, number, number]; shade: number }[] = [];
 
     for (let gx = -R; gx <= R; gx++) {
@@ -75,18 +77,32 @@ const AbstractYinYang = () => {
         const dist = Math.sqrt(gx * gx + gy * gy);
         if (dist > R) continue;
 
-        // Abstract S-curve flow: use a sine-based gradient instead of hard yin-yang split
-        const angle = Math.atan2(gy, gx);
-        const normalizedDist = dist / R;
-        
-        // S-curve influence: creates a flowing wave division
-        const sCurve = Math.sin(angle + normalizedDist * 1.8) * 0.5 + 0.5;
-        
-        // Add some organic noise-like variation
-        const noise = Math.sin(gx * 0.9 + gy * 0.7) * 0.12 + Math.cos(gx * 0.5 - gy * 1.1) * 0.08;
-        
-        // Blend: creates a smooth gradient flow reminiscent of yin yang without being literal
-        const shade = Math.max(0.08, Math.min(0.92, sCurve + noise));
+        // Classic yin yang geometry
+        // Default: left half is dark (0.15), right half is light (0.85)
+        let shade = gx < 0 ? 0.15 : 0.85;
+
+        // Upper small semicircle (centered at top of vertical axis): flips to light
+        const distUpper = Math.sqrt(gx * gx + (gy - halfR) * (gy - halfR));
+        if (distUpper <= halfR) {
+          shade = 0.85;
+        }
+
+        // Lower small semicircle (centered at bottom of vertical axis): flips to dark
+        const distLower = Math.sqrt(gx * gx + (gy + halfR) * (gy + halfR));
+        if (distLower <= halfR) {
+          shade = 0.15;
+        }
+
+        // Eye dots: contrasting dots in each half
+        const distUpperEye = Math.sqrt(gx * gx + (gy - halfR) * (gy - halfR));
+        if (distUpperEye <= eyeR) {
+          shade = 0.15; // dark eye in light region
+        }
+
+        const distLowerEye = Math.sqrt(gx * gx + (gy + halfR) * (gy + halfR));
+        if (distLowerEye <= eyeR) {
+          shade = 0.85; // light eye in dark region
+        }
 
         result.push({ pos: [gx * gap, gy * gap, 0], shade });
       }
