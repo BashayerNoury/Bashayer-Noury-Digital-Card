@@ -1,36 +1,17 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useMemo, useState, useEffect } from "react";
 import * as THREE from "three";
-import { Float, Environment } from "@react-three/drei";
+import { Float, Environment, RoundedBox } from "@react-three/drei";
 
 const VoxelBlock = ({ position, shade }: { position: [number, number, number]; shade: number }) => {
-  const geometry = useMemo(() => {
-    const s = 0.17;
-    const r = 0.03;
-    const shape = new THREE.Shape();
-    shape.moveTo(-s + r, -s);
-    shape.lineTo(s - r, -s);
-    shape.quadraticCurveTo(s, -s, s, -s + r);
-    shape.lineTo(s, s - r);
-    shape.quadraticCurveTo(s, s, s - r, s);
-    shape.lineTo(-s + r, s);
-    shape.quadraticCurveTo(-s, s, -s, s - r);
-    shape.lineTo(-s, -s + r);
-    shape.quadraticCurveTo(-s, -s, -s + r, -s);
-    const geo = new THREE.ExtrudeGeometry(shape, {
-      depth: s * 2, bevelEnabled: true, bevelThickness: 0.012, bevelSize: 0.012, bevelSegments: 2,
-    });
-    geo.translate(0, 0, -s);
-    return geo;
-  }, []);
-
   const color = useMemo(() => {
     const v = Math.round(shade * 255);
     return `rgb(${v},${v},${v})`;
   }, [shade]);
 
   return (
-    <mesh position={position} geometry={geometry}>
+    <mesh position={position}>
+      <boxGeometry args={[0.3, 0.3, 0.3]} />
       <meshPhysicalMaterial
         color={color}
         metalness={0.85}
@@ -66,51 +47,44 @@ const AbstractYinYang = () => {
   });
 
   const blocks = useMemo(() => {
-    const gap = 0.38;
-    const R = 3.2;
+    const gap = 0.42;
+    const gridR = 7;
+    const R = gridR * gap;
     const halfR = R / 2;
-    const eyeR = R * 0.25;
+    const eyeR = R * 0.18;
     const result: { pos: [number, number, number]; shade: number }[] = [];
 
-    for (let gx = -R; gx <= R; gx++) {
-      for (let gy = -R; gy <= R; gy++) {
-        const dist = Math.sqrt(gx * gx + gy * gy);
+    for (let ix = -gridR; ix <= gridR; ix++) {
+      for (let iy = -gridR; iy <= gridR; iy++) {
+        const wx = ix * gap;
+        const wy = iy * gap;
+        const dist = Math.sqrt(wx * wx + wy * wy);
         if (dist > R) continue;
 
-        // Classic yin yang geometry
-        // Default: left half is dark (0.15), right half is light (0.85)
-        let shade = gx < 0 ? 0.15 : 0.85;
+        // Classic yin yang S-curve division
+        let isYin = wx < 0;
 
-        // Upper small semicircle (centered at top of vertical axis): flips to light
-        const distUpper = Math.sqrt(gx * gx + (gy - halfR) * (gy - halfR));
-        if (distUpper <= halfR) {
-          shade = 0.85;
-        }
+        // Upper semicircle: belongs to yang (light)
+        const dUpper = Math.sqrt(wx * wx + (wy - halfR) * (wy - halfR));
+        if (dUpper <= halfR) isYin = false;
 
-        // Lower small semicircle (centered at bottom of vertical axis): flips to dark
-        const distLower = Math.sqrt(gx * gx + (gy + halfR) * (gy + halfR));
-        if (distLower <= halfR) {
-          shade = 0.15;
-        }
+        // Lower semicircle: belongs to yin (dark)
+        const dLower = Math.sqrt(wx * wx + (wy + halfR) * (wy + halfR));
+        if (dLower <= halfR) isYin = true;
 
-        // Eye dots: contrasting dots in each half
-        const distUpperEye = Math.sqrt(gx * gx + (gy - halfR) * (gy - halfR));
-        if (distUpperEye <= eyeR) {
-          shade = 0.15; // dark eye in light region
-        }
+        let shade = isYin ? 0.1 : 0.9;
 
-        const distLowerEye = Math.sqrt(gx * gx + (gy + halfR) * (gy + halfR));
-        if (distLowerEye <= eyeR) {
-          shade = 0.85; // light eye in dark region
-        }
+        // Eye dots - contrasting dots
+        if (dUpper <= eyeR) shade = 0.1;
+        if (dLower <= eyeR) shade = 0.9;
 
-        result.push({ pos: [gx * gap, gy * gap, 0], shade });
+        result.push({ pos: [wx, wy, 0], shade });
       }
     }
     return result;
   }, []);
 
-  // In dark mode: light shades (white/silver), in light mode: dark shades (black/charcoal)
+  // Theme mapping: dark mode = light tones, light mode = dark tones
   const mappedBlocks = blocks.map((b) => ({
     ...b,
     shade: isDark ? 0.5 + b.shade * 0.5 : b.shade * 0.35,
@@ -133,7 +107,7 @@ const AbstractYinYang = () => {
 const FloatingCube = () => {
   return (
     <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] md:w-[300px] md:h-[300px] z-10 pointer-events-none opacity-60">
-      <Canvas camera={{ position: [0, 0, 6], fov: 35 }} dpr={[1, 2]}>
+      <Canvas camera={{ position: [0, 0, 8], fov: 35 }} dpr={[1, 2]}>
         <ambientLight intensity={0.4} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <directionalLight position={[-3, -3, 2]} intensity={0.3} />
