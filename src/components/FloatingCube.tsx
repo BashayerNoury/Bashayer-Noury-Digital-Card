@@ -3,65 +3,72 @@ import { useRef, useMemo } from "react";
 import * as THREE from "three";
 import { Float, Environment } from "@react-three/drei";
 
-const RoundedBox = ({ position, size = 0.42, gap = 0.06 }: { position: [number, number, number]; size?: number; gap?: number }) => {
+const MobiusStrip = () => {
+  const meshRef = useRef<THREE.Mesh>(null!);
+
   const geometry = useMemo(() => {
-    const shape = new THREE.Shape();
-    const r = 0.06;
-    const s = size / 2;
-    shape.moveTo(-s + r, -s);
-    shape.lineTo(s - r, -s);
-    shape.quadraticCurveTo(s, -s, s, -s + r);
-    shape.lineTo(s, s - r);
-    shape.quadraticCurveTo(s, s, s - r, s);
-    shape.lineTo(-s + r, s);
-    shape.quadraticCurveTo(-s, s, -s, s - r);
-    shape.lineTo(-s, -s + r);
-    shape.quadraticCurveTo(-s, -s, -s + r, -s);
+    const segments = 200;
+    const radius = 1.2;
+    const width = 0.4;
+    const positions: number[] = [];
+    const indices: number[] = [];
+    const normals: number[] = [];
+    const strips = 20;
 
-    const extrudeSettings = { depth: size, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.02, bevelSegments: 3 };
-    const geo = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-    geo.translate(0, 0, -size / 2);
+    for (let i = 0; i <= segments; i++) {
+      const u = (i / segments) * Math.PI * 2;
+      for (let j = 0; j <= strips; j++) {
+        const v = (j / strips - 0.5) * width;
+        const x = (radius + v * Math.cos(u / 2)) * Math.cos(u);
+        const y = (radius + v * Math.cos(u / 2)) * Math.sin(u);
+        const z = v * Math.sin(u / 2);
+        positions.push(x, y, z);
+
+        // Approximate normals
+        const nx = Math.cos(u) * Math.sin(u / 2);
+        const ny = Math.sin(u) * Math.sin(u / 2);
+        const nz = Math.cos(u / 2);
+        normals.push(nx, ny, nz);
+      }
+    }
+
+    for (let i = 0; i < segments; i++) {
+      for (let j = 0; j < strips; j++) {
+        const a = i * (strips + 1) + j;
+        const b = a + strips + 1;
+        indices.push(a, b, a + 1);
+        indices.push(b, b + 1, a + 1);
+      }
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+    geo.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
+    geo.setIndex(indices);
+    geo.computeVertexNormals();
     return geo;
-  }, [size]);
-
-  return (
-    <mesh position={position} geometry={geometry}>
-      <meshPhysicalMaterial
-        color="#1a1a1a"
-        metalness={0.9}
-        roughness={0.15}
-        clearcoat={1}
-        clearcoatRoughness={0.1}
-        envMapIntensity={1.5}
-      />
-    </mesh>
-  );
-};
-
-const CubeCluster = () => {
-  const groupRef = useRef<THREE.Group>(null!);
+  }, []);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
-    groupRef.current.rotation.x = Math.sin(t * 0.3) * 0.3 + 0.5;
-    groupRef.current.rotation.y = t * 0.2;
-    groupRef.current.rotation.z = Math.sin(t * 0.2) * 0.1;
+    meshRef.current.rotation.x = Math.sin(t * 0.3) * 0.2 + 0.3;
+    meshRef.current.rotation.y = t * 0.15;
+    meshRef.current.rotation.z = Math.sin(t * 0.2) * 0.1;
   });
-
-  const gap = 0.5;
-  const positions: [number, number, number][] = [];
-  for (let x = -1; x <= 1; x++)
-    for (let y = -1; y <= 1; y++)
-      for (let z = -1; z <= 1; z++)
-        positions.push([x * gap, y * gap, z * gap]);
 
   return (
     <Float speed={1.5} rotationIntensity={0} floatIntensity={0.5} floatingRange={[-0.1, 0.1]}>
-      <group ref={groupRef}>
-        {positions.map((pos, i) => (
-          <RoundedBox key={i} position={pos} />
-        ))}
-      </group>
+      <mesh ref={meshRef} geometry={geometry}>
+        <meshPhysicalMaterial
+          color="#1a1a1a"
+          metalness={0.9}
+          roughness={0.15}
+          clearcoat={1}
+          clearcoatRoughness={0.1}
+          envMapIntensity={1.5}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
     </Float>
   );
 };
@@ -75,7 +82,7 @@ const FloatingCube = () => {
         <directionalLight position={[-3, -3, 2]} intensity={0.4} />
         <spotLight position={[0, 5, 3]} intensity={0.6} angle={0.5} penumbra={1} />
         <Environment preset="city" />
-        <CubeCluster />
+        <MobiusStrip />
       </Canvas>
     </div>
   );
