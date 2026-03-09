@@ -6,7 +6,6 @@ import { getDailyQuote } from "@/data/quotes";
 import { Link } from "react-router-dom";
 import SmokeBackground from "@/components/SmokeBackground";
 import ThemeToggle from "@/components/ThemeToggle";
-import FloatingCube from "@/components/FloatingCube";
 import SplashScreen from "@/components/SplashScreen";
 import signatureDark from "@/assets/signature-dark.png";
 import signatureLight from "@/assets/signature-light.png";
@@ -31,7 +30,6 @@ const Index = () => {
       {showSplash && <SplashScreen variant="home" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
-      <FloatingCube />
         <motion.div
           className="max-w-2xl w-full relative z-10"
           initial={{ opacity: 0, y: 8 }}
