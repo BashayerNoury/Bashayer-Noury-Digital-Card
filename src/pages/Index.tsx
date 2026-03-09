@@ -46,7 +46,7 @@ const Index = () => {
               alt="Bashayer Noury"
               className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover ring-2 ring-foreground/10 shadow-[0_8px_30px_-4px_hsl(var(--primary)/0.4)]"
             />
-            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-green-500 rounded-full border-2 border-background" />
+            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-green-500 rounded-full border-2 border-background animate-[pulse_2s_ease-in-out_infinite]" />
           </div>
           <div>
             <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium tracking-[0.3em] uppercase mb-1">
