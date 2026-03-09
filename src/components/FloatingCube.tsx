@@ -1,74 +1,59 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useMemo } from "react";
+import { useRef } from "react";
 import * as THREE from "three";
 import { Float, Environment } from "@react-three/drei";
 
-const MobiusStrip = () => {
-  const meshRef = useRef<THREE.Mesh>(null!);
-
-  const geometry = useMemo(() => {
-    const segments = 200;
-    const radius = 1.2;
-    const width = 0.4;
-    const positions: number[] = [];
-    const indices: number[] = [];
-    const normals: number[] = [];
-    const strips = 20;
-
-    for (let i = 0; i <= segments; i++) {
-      const u = (i / segments) * Math.PI * 2;
-      for (let j = 0; j <= strips; j++) {
-        const v = (j / strips - 0.5) * width;
-        const x = (radius + v * Math.cos(u / 2)) * Math.cos(u);
-        const y = (radius + v * Math.cos(u / 2)) * Math.sin(u);
-        const z = v * Math.sin(u / 2);
-        positions.push(x, y, z);
-
-        // Approximate normals
-        const nx = Math.cos(u) * Math.sin(u / 2);
-        const ny = Math.sin(u) * Math.sin(u / 2);
-        const nz = Math.cos(u / 2);
-        normals.push(nx, ny, nz);
-      }
-    }
-
-    for (let i = 0; i < segments; i++) {
-      for (let j = 0; j < strips; j++) {
-        const a = i * (strips + 1) + j;
-        const b = a + strips + 1;
-        indices.push(a, b, a + 1);
-        indices.push(b, b + 1, a + 1);
-      }
-    }
-
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-    geo.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
-    geo.setIndex(indices);
-    geo.computeVertexNormals();
-    return geo;
-  }, []);
+const Sphere = ({ radius, distance, speed, offset, size }: { radius: number; distance: number; speed: number; offset: number; size: number }) => {
+  const ref = useRef<THREE.Mesh>(null!);
 
   useFrame((state) => {
-    const t = state.clock.elapsedTime;
-    meshRef.current.rotation.x = Math.sin(t * 0.3) * 0.2 + 0.3;
-    meshRef.current.rotation.y = t * 0.15;
-    meshRef.current.rotation.z = Math.sin(t * 0.2) * 0.1;
+    const t = state.clock.elapsedTime * speed + offset;
+    ref.current.position.x = Math.cos(t) * distance;
+    ref.current.position.y = Math.sin(t * 0.7) * distance * 0.5;
+    ref.current.position.z = Math.sin(t) * distance;
   });
 
   return (
+    <mesh ref={ref}>
+      <sphereGeometry args={[size, 32, 32]} />
+      <meshPhysicalMaterial
+        color="#1a1a1a"
+        metalness={0.95}
+        roughness={0.1}
+        clearcoat={1}
+        clearcoatRoughness={0.05}
+        envMapIntensity={2}
+      />
+    </mesh>
+  );
+};
+
+const SphereCluster = () => {
+  const groupRef = useRef<THREE.Group>(null!);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    groupRef.current.rotation.y = t * 0.08;
+    groupRef.current.rotation.x = Math.sin(t * 0.15) * 0.2;
+  });
+
+  const spheres = [
+    { distance: 0, speed: 0, offset: 0, size: 0.45 },
+    { distance: 0.9, speed: 0.6, offset: 0, size: 0.2 },
+    { distance: 1.1, speed: 0.5, offset: 2, size: 0.15 },
+    { distance: 0.7, speed: 0.8, offset: 4, size: 0.25 },
+    { distance: 1.3, speed: 0.4, offset: 1, size: 0.12 },
+    { distance: 0.5, speed: 1.0, offset: 3, size: 0.1 },
+    { distance: 1.0, speed: 0.55, offset: 5, size: 0.18 },
+  ];
+
+  return (
     <Float speed={1.5} rotationIntensity={0} floatIntensity={0.5} floatingRange={[-0.1, 0.1]}>
-      <mesh ref={meshRef} geometry={geometry}>
-        <meshPhysicalMaterial
-          color="#1a1a1a"
-          metalness={0.9}
-          roughness={0.15}
-          clearcoat={1}
-          clearcoatRoughness={0.1}
-          envMapIntensity={1.5}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
+      <group ref={groupRef}>
+        {spheres.map((s, i) => (
+          <Sphere key={i} radius={0} {...s} />
+        ))}
+      </group>
     </Float>
   );
 };
@@ -82,7 +67,7 @@ const FloatingCube = () => {
         <directionalLight position={[-3, -3, 2]} intensity={0.4} />
         <spotLight position={[0, 5, 3]} intensity={0.6} angle={0.5} penumbra={1} />
         <Environment preset="city" />
-        <MobiusStrip />
+        <SphereCluster />
       </Canvas>
     </div>
   );
