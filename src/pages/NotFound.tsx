@@ -20,12 +20,12 @@ const NotFound = () => {
 
 
   return (
-    <div className="h-screen overflow-hidden bg-background flex items-center justify-center px-4 sm:px-6 py-4 relative">
+    <div className="min-h-screen bg-background/50 flex items-center justify-center px-4 sm:px-6 py-6 relative">
       {showSplash && <SplashScreen variant="notfound" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
       <motion.div
-        className="max-w-2xl w-full relative z-10 text-center"
+        className="relative z-10 w-full max-w-md rounded-2xl border border-border/60 bg-card/80 backdrop-blur-xl shadow-[0_8px_60px_-12px_hsl(var(--primary)/0.15)] p-6 sm:p-8 text-center"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
@@ -46,16 +46,17 @@ const NotFound = () => {
           <Home size={16} className="sm:w-[18px] sm:h-[18px]" />
           Back Home
         </Link>
+
+        <div className="flex flex-col items-center gap-0.5 mt-8 pt-4 border-t border-border/40">
+          <p className="text-muted-foreground text-[10px] sm:text-xs">
+            Made with <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="inline w-3.5 h-3.5 sm:w-4 sm:h-4 align-middle mx-0.5" /> In{" "}
+            <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              Lovable
+            </a>
+          </p>
+          <p className="text-muted-foreground/40 text-[8px] sm:text-[10px]">v1.0.0</p>
+        </div>
       </motion.div>
-      <div className="absolute bottom-3 flex flex-col items-center gap-0.5">
-        <p className="text-muted-foreground text-[10px] sm:text-xs">
-          Made with <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="inline w-3.5 h-3.5 sm:w-4 sm:h-4 align-middle mx-0.5" /> In{" "}
-          <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
-            Lovable
-          </a>
-        </p>
-        <p className="text-muted-foreground/40 text-[8px] sm:text-[10px]">v1.0.0</p>
-      </div>
     </div>
   );
 };
