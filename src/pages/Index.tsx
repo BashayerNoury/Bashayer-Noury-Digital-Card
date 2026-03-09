@@ -26,16 +26,16 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background/50 flex items-center justify-center px-4 sm:px-6 py-6 relative">
+    <div className="h-screen overflow-hidden bg-background flex items-center justify-center px-4 sm:px-6 py-4 relative">
       {showSplash && <SplashScreen variant="home" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
-      <motion.div
-        className="relative z-10 w-full max-w-md rounded-2xl border border-border/60 bg-card/80 backdrop-blur-xl shadow-[0_8px_60px_-12px_hsl(var(--primary)/0.15)] p-6 sm:p-8"
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
-      >
+        <motion.div
+          className="max-w-2xl w-full relative z-10"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
+        >
         <div className="flex items-center gap-4 mb-2 sm:mb-4">
           <div className="relative flex-shrink-0">
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/20 absolute inset-0 blur-xl" />
@@ -49,15 +49,15 @@ const Index = () => {
             <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium tracking-[0.3em] uppercase mb-1">
               HEY THERE!
             </span>
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
+            <h1 className="text-3xl sm:text-5xl font-bold text-foreground">
               I'm <SlotText text="Bash." className="text-muted-foreground/80" startDelay={showSplash ? 2800 : 400} />
             </h1>
           </div>
         </div>
 
-        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3 sm:mb-5 max-w-xl">Bashayer Noury is a Product Manager based in 🇰🇼<br />Let's Connect!</p>
+        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3 sm:mb-6 max-w-xl">Bashayer Noury is a Product Manager based in 🇰🇼<br />Let's Connect!</p>
 
-        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-8">
           {skills.map((skill) => <span
             key={skill}
             className="px-3 sm:px-4 py-1 sm:py-2 rounded-full border-2 border-foreground/30 text-xs sm:text-sm text-foreground/70 font-medium backdrop-blur-sm">
@@ -66,7 +66,7 @@ const Index = () => {
           )}
         </div>
 
-        <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8">
+        <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-10">
           <a
             href="https://wa.me/96597304442"
             target="_blank"
@@ -111,7 +111,7 @@ const Index = () => {
         </div>
 
         <motion.div
-          className="border-t border-border pt-4 sm:pt-5 flex items-center justify-between gap-3"
+          className="border-t border-border pt-4 sm:pt-6 flex items-center justify-between gap-3"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
@@ -120,11 +120,11 @@ const Index = () => {
             <p className="text-muted-foreground text-xs sm:text-sm italic">"{dailyQuote.text}"</p>
             <p className="text-muted-foreground/60 text-[10px] sm:text-xs mt-1">— {dailyQuote.author}</p>
           </div>
-          <img src={signatureDark} alt="BN Signature" className="h-10 sm:h-14 w-auto opacity-60 dark:hidden flex-shrink-0" />
-          <img src={signatureLight} alt="BN Signature" className="h-10 sm:h-14 w-auto opacity-60 hidden dark:block flex-shrink-0" />
+          <img src={signatureDark} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 dark:hidden flex-shrink-0" />
+          <img src={signatureLight} alt="BN Signature" className="h-10 sm:h-16 w-auto opacity-60 hidden dark:block flex-shrink-0" />
         </motion.div>
-
-        <div className="flex flex-col items-center gap-0.5 mt-5 pt-4 border-t border-border/40">
+        </motion.div>
+        <div className="absolute bottom-3 flex flex-col items-center gap-0.5">
           <p className="text-muted-foreground text-[10px] sm:text-xs">
             Made with <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="inline w-3.5 h-3.5 sm:w-4 sm:h-4 align-middle mx-0.5" /> In{" "}
             <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
@@ -133,7 +133,6 @@ const Index = () => {
           </p>
           <p className="text-muted-foreground/40 text-[8px] sm:text-[10px]">v1.0.0</p>
         </div>
-      </motion.div>
     </div>
   );
 };

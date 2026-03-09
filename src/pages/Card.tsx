@@ -69,13 +69,13 @@ END:VCARD`;
   };
 
   return (
-    <div className="min-h-screen bg-background/50 flex flex-col items-center justify-center px-4 sm:px-6 py-6 relative">
+    <div className="min-h-screen overflow-hidden bg-background flex flex-col items-center justify-center px-6 relative">
       {showSplash && <SplashScreen variant="card" onComplete={handleSplashComplete} />}
       <ThemeToggle />
       <SmokeBackground />
 
       <motion.div
-        className="relative z-10 w-full max-w-md rounded-2xl border border-border/60 bg-card/80 backdrop-blur-xl shadow-[0_8px_60px_-12px_hsl(var(--primary)/0.15)] p-6 sm:p-8 flex flex-col items-center gap-6"
+        className="flex flex-col items-center gap-8"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: showSplash ? 2.2 : 0.4, ease: "easeOut" }}
@@ -100,7 +100,7 @@ END:VCARD`;
 
         {/* QR */}
         <div className="relative">
-          <div className="w-[200px] h-[200px] overflow-hidden flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">
+          <div className="w-[220px] h-[220px] overflow-hidden flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">
             <QrcodeSVG
               value={siteUrl}
               variant={{ eyes: "gravity", body: "dots" }}
@@ -112,7 +112,7 @@ END:VCARD`;
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col items-center gap-3 w-full mt-1">
+        <div className="flex flex-col items-center gap-3 w-full max-w-sm mt-2">
           <div className="flex items-center w-full rounded-full border border-foreground/20 bg-foreground/5 py-1.5 pl-7 pr-2 transition-all duration-300">
             <span className={`flex-1 py-2 pr-3 text-sm sm:text-base font-medium tracking-tight ${copied ? "text-primary" : "text-foreground"}`}>
               {copied ? "Copied!" : "bybash.lovable.app"}
@@ -148,17 +148,16 @@ END:VCARD`;
             ← Back to Portfolio
           </a>
         </div>
-
-        <div className="flex flex-col items-center gap-0.5 mt-2 pt-4 border-t border-border/40 w-full">
-          <p className="text-muted-foreground text-[10px] sm:text-xs">
-            Made with <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="inline w-3.5 h-3.5 sm:w-4 sm:h-4 align-middle mx-0.5" /> In{" "}
-            <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
-              Lovable
-            </a>
-          </p>
-          <p className="text-muted-foreground/40 text-[8px] sm:text-[10px]">v1.0.0</p>
-        </div>
       </motion.div>
+      <div className="absolute bottom-3 flex flex-col items-center gap-0.5">
+        <p className="text-muted-foreground text-[10px] sm:text-xs">
+          Made with <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="inline w-3.5 h-3.5 sm:w-4 sm:h-4 align-middle mx-0.5" /> In{" "}
+          <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground transition-colors">
+            Lovable
+          </a>
+        </p>
+        <p className="text-muted-foreground/40 text-[8px] sm:text-[10px]">v1.0.0</p>
+      </div>
     </div>
   );
 };
